@@ -46,6 +46,8 @@ GEMINI_API_KEY     = os.getenv("GEMINI_API_KEY", "")
 GMAIL_USER         = os.getenv("GMAIL_USER", "salonidas.work@gmail.com")
 GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")
 RECIPIENT_EMAIL    = os.getenv("RECIPIENT_EMAIL", "salonidas.work@gmail.com")
+GITHUB_TOKEN       = os.getenv("GITHUB_TOKEN", "")
+GITHUB_REPO        = os.getenv("GITHUB_REPO", "salonidas-prod/daily-digest")
 
 OWNER_NAME    = "Saloni"
 DIGEST_TITLE  = "Saloni's Daily Digest"
@@ -1051,6 +1053,46 @@ def build_html(sections, markets, spanish, all_articles):
     return html
 
 # ══════════════════════════════════════════════════════════
+# GITHUB PAGES PUBLISHER
+# ══════════════════════════════════════════════════════════
+def push_to_gh_pages(html_path):
+    """Push dashboard.html as index.html to the gh-pages branch."""
+    import subprocess, tempfile, shutil
+    log_section("PUBLISHING TO GITHUB PAGES")
+
+    if not GITHUB_TOKEN:
+        log("GITHUB_TOKEN not set — skipping GitHub Pages publish.", "!")
+        return False
+
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            # Copy dashboard as index.html
+            shutil.copy(html_path, os.path.join(tmp, "index.html"))
+
+            remote = f"https://{GITHUB_TOKEN}@github.com/{GITHUB_REPO}.git"
+            date_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M IST")
+
+            def run(cmd, **kw):
+                return subprocess.run(cmd, cwd=tmp, check=True,
+                                      capture_output=True, text=True, **kw)
+
+            run(["git", "init"])
+            run(["git", "checkout", "-b", "gh-pages"])
+            run(["git", "config", "user.email", "digest@local"])
+            run(["git", "config", "user.name",  "Saloni's Digest Bot"])
+            run(["git", "add", "index.html"])
+            run(["git", "commit", "-m", f"digest: {date_str}"])
+            run(["git", "push", "--force", remote, "gh-pages"])
+
+        log(f"Published → https://{GITHUB_REPO.split('/')[0]}.github.io/"
+            f"{GITHUB_REPO.split('/')[1]}/", "✓")
+        return True
+    except Exception as exc:
+        log(f"GitHub Pages publish failed — {exc}", "✗")
+        return False
+
+
+# ══════════════════════════════════════════════════════════
 # EMAIL SENDER
 # ══════════════════════════════════════════════════════════
 def send_email(sections, markets, date_str):
@@ -1220,14 +1262,17 @@ def main():
     OUTPUT_HTML.write_text(html, encoding="utf-8")
     log(f"Saved → {OUTPUT_HTML}", "✓")
 
-    # 6 — Email
+    # 6 — Publish to GitHub Pages
+    push_to_gh_pages(OUTPUT_HTML)
+
+    # 7 — Email
     if skip_email:
         log("Email skipped (--no-email flag)", "!")
     else:
         date_str = datetime.datetime.now().strftime("%A, %d %B %Y")
         send_email(sections, markets, date_str)
 
-    # 7 — Open browser
+    # 8 — Open browser
     if skip_browser:
         log("Browser skipped (--no-browser flag)", "!")
     else:
