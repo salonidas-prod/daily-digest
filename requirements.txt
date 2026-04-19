@@ -1,0 +1,5 @@
+feedparser>=6.0.10
+google-genai>=1.0.0
+python-dotenv>=1.0.0
+yfinance>=0.2.40
+requests>=2.31.0
