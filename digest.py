@@ -99,174 +99,281 @@ RSS_FEEDS = {
 }
 
 # ══════════════════════════════════════════════════════════
-# SPANISH LESSONS  — 15 themes, rotating by day of year
+# SPANISH LESSONS  — 30 daily sets, Duolingo-style rotating vocab
+# Each set: type label + 5 items (es, en, example, pron)
 # ══════════════════════════════════════════════════════════
-SPANISH_THEMES = [
-    {
-        "theme": "Greetings & Introductions",
-        "roadmap": "A1 Beginner — Your very first steps. Master the art of saying hello and actually meaning it.",
-        "phrases": [
-            ("Hola, ¿cómo estás?",    "Hello, how are you?",          "OH-lah, KOH-moh es-TAHS"),
-            ("Me llamo Saloni.",        "My name is Saloni.",           "Meh YAH-moh Saloni"),
-            ("Mucho gusto.",            "Nice to meet you.",            "MOO-choh GOOS-toh"),
-            ("¿De dónde eres?",        "Where are you from?",          "Deh DON-deh EH-rehs"),
-            ("Soy de la India.",        "I am from India.",             "Soy deh lah EEN-dyah"),
-        ],
-    },
-    {
-        "theme": "Café & Food",
-        "roadmap": "A1 Beginner — Survive your first tapas bar. The phrases that actually matter.",
-        "phrases": [
-            ("Un café solo, por favor.",   "A black coffee, please.",        "Oon kah-FEH SOH-loh, por fah-VOR"),
-            ("¿Qué recomiendas?",          "What do you recommend?",         "Keh reh-koh-MYEHN-dahs"),
-            ("La cuenta, por favor.",      "The bill, please.",              "Lah KWEHN-tah, por fah-VOR"),
-            ("Está delicioso.",            "It's delicious.",                "Es-TAH deh-lee-SYOH-soh"),
-            ("¿Hay algo vegetariano?",     "Is there anything vegetarian?",  "Ay AL-goh beh-heh-tah-RYAH-noh"),
-        ],
-    },
-    {
-        "theme": "Travel & Directions",
-        "roadmap": "A2 Elementary — Navigate airports, metros, and cobblestone streets with confidence.",
-        "phrases": [
-            ("¿Dónde está el aeropuerto?",  "Where is the airport?",          "DON-deh es-TAH el ah-eh-ro-PWER-toh"),
-            ("Gira a la izquierda.",         "Turn left.",                     "HEE-rah ah lah ees-KYEHR-dah"),
-            ("¿Cuánto cuesta el billete?",   "How much is the ticket?",        "KWAHN-toh KWES-tah el bee-YEH-teh"),
-            ("Quiero ir a Barcelona.",       "I want to go to Barcelona.",     "KYEH-roh eer ah Bar-seh-LOH-nah"),
-            ("Me he perdido.",               "I'm lost.",                      "Meh eh pehr-DEE-doh"),
-        ],
-    },
-    {
-        "theme": "Work & Business",
-        "roadmap": "A2 Elementary — Spanish for the professional world. Meetings, deadlines, small talk.",
-        "phrases": [
-            ("Tengo una reunión.",          "I have a meeting.",             "TEHN-goh OO-nah reh-oo-NYOHN"),
-            ("¿Cuál es el plazo?",          "What's the deadline?",          "Kwahl es el PLAH-soh"),
-            ("Trabajo desde casa.",         "I work from home.",             "Trah-BAH-hoh DES-deh KAH-sah"),
-            ("Necesito más tiempo.",        "I need more time.",             "Neh-seh-SEE-toh mahs TYEHM-poh"),
-            ("El proyecto va bien.",        "The project is going well.",    "El pro-YEHK-toh bah BYEHN"),
-        ],
-    },
-    {
-        "theme": "Finance & Markets",
-        "roadmap": "B1 Intermediate — Discuss money and markets in Spanish. Handy for global finance conversations.",
-        "phrases": [
-            ("Las acciones han subido.",          "Stocks have gone up.",             "Lahs ak-SYOH-nehs ahn soo-BEE-doh"),
-            ("¿Cuál es el tipo de cambio?",       "What's the exchange rate?",        "Kwahl es el TEE-poh deh KAHM-byoh"),
-            ("Quiero invertir a largo plazo.",    "I want to invest long-term.",      "KYEH-roh een-vehr-TEER ah LAR-goh PLAH-soh"),
-            ("El mercado está volátil.",          "The market is volatile.",          "El mehr-KAH-doh es-TAH boh-LAH-teel"),
-            ("Ahorra para el futuro.",            "Save for the future.",             "Ah-OH-rrah PAH-rah el foo-TOO-roh"),
-        ],
-    },
-    {
-        "theme": "Technology & Innovation",
-        "roadmap": "B1 Intermediate — Tech vocabulary for the digital age. Impress Spanish engineers at conferences.",
-        "phrases": [
-            ("¿Tienes WiFi?",                        "Do you have WiFi?",                    "TYEH-nehs WEE-fee"),
-            ("La batería está baja.",                "The battery is low.",                  "Lah bah-teh-REE-ah es-TAH BAH-hah"),
-            ("¿Puedes enviarme el enlace?",          "Can you send me the link?",            "PWEH-dehs en-BYAR-meh el en-LAH-seh"),
-            ("La IA está cambiando todo.",           "AI is changing everything.",           "Lah ee-AH es-TAH kahm-BYAHN-doh TOH-doh"),
-            ("Necesito actualizar el software.",     "I need to update the software.",       "Neh-seh-SEE-toh ak-too-ah-lee-SAR el SOFT-wehr"),
-        ],
-    },
-    {
-        "theme": "Emotions & Wellbeing",
-        "roadmap": "B1 Intermediate — Express your inner world in Spanish. Essential for genuine human connection.",
-        "phrases": [
-            ("Estoy muy emocionada.",         "I'm very excited.",                   "Es-TOY mwee eh-moh-syoh-NAH-dah"),
-            ("Me siento abrumada.",           "I feel overwhelmed.",                 "Meh SYEHN-toh ah-broo-MAH-dah"),
-            ("Necesito un descanso.",         "I need a break.",                     "Neh-seh-SEE-toh oon des-KAHN-soh"),
-            ("Todo va a salir bien.",         "Everything is going to work out.",    "TOH-doh bah ah sah-LEER BYEHN"),
-            ("Me alegra mucho verte.",        "I'm so glad to see you.",             "Meh ah-LEH-grah MOO-choh BEHR-teh"),
-        ],
-    },
-    {
-        "theme": "Current Events & News",
-        "roadmap": "B2 Upper Intermediate — Discuss global affairs. Read El País, watch Telemundo, debate boldly.",
-        "phrases": [
-            ("¿Has leído las noticias hoy?",            "Have you read the news today?",          "Ahs leh-EE-doh lahs noh-TEE-syahs oy"),
-            ("El mundo está cambiando rápidamente.",    "The world is changing rapidly.",         "El MOON-doh es-TAH kahm-BYAHN-doh RAH-pee-dah-MEHN-teh"),
-            ("La situación es preocupante.",             "The situation is worrying.",             "Lah see-twah-SYOHN es preh-oh-koo-PAHN-teh"),
-            ("Hay que estar bien informado.",            "One must stay well-informed.",           "Ay keh es-TAR byehn een-for-MAH-doh"),
-            ("¿Cuál es tu opinión sobre esto?",         "What's your opinion on this?",           "Kwahl es too oh-pee-NYOHN SOH-breh ES-toh"),
-        ],
-    },
-    {
-        "theme": "Shopping & Negotiation",
-        "roadmap": "B2 Upper Intermediate — Haggle, browse, and splurge in Spanish markets. Works equally well in LATAM.",
-        "phrases": [
-            ("¿Cuánto cuesta esto?",                                    "How much does this cost?",         "KWAHN-toh KWES-tah ES-toh"),
-            ("Es demasiado caro. ¿Me puede hacer un descuento?",       "It's too expensive. Can you give me a discount?",  "Es deh-mah-SYAH-doh KAH-roh. Meh PWEH-deh ah-SER oon des-KWEHN-toh"),
-            ("Me lo llevo.",                                            "I'll take it.",                    "Meh loh YEH-boh"),
-            ("¿Aceptan tarjeta de crédito?",                           "Do you accept credit card?",       "Ah-SEP-tahn tar-HEH-tah deh KREH-dee-toh"),
-            ("¿Hay algo en oferta?",                                    "Is anything on sale?",             "Ay AL-goh en oh-FEHR-tah"),
-        ],
-    },
-    {
-        "theme": "Culture & Arts",
-        "roadmap": "B2 Upper Intermediate — Discuss cinema, literature, music. Connect with the soul of Spanish culture.",
-        "phrases": [
-            ("¿Has visto alguna película española?",    "Have you seen any Spanish films?",     "Ahs BEES-toh AL-goo-nah peh-LEE-koo-lah es-pah-NYOH-lah"),
-            ("Me encanta la literatura en castellano.", "I love literature in Spanish.",        "Meh en-KAHN-tah lah lee-teh-rah-TOO-rah en kas-teh-YAH-noh"),
-            ("El Prado es impresionante.",              "The Prado is impressive.",             "El PRAH-doh es eem-preh-syoh-NAHN-teh"),
-            ("La música me transporta.",                "Music transports me.",                 "Lah MOO-see-kah meh trans-POR-tah"),
-            ("García Márquez es mi autor favorito.",   "García Márquez is my favourite.",      "Gar-SEE-ah MAR-kes es mee ow-TOR fah-boh-REE-toh"),
-        ],
-    },
-    {
-        "theme": "Health & Lifestyle",
-        "roadmap": "C1 Advanced — Medical vocabulary and lifestyle conversations. Vital for living or travelling abroad.",
-        "phrases": [
-            ("Necesito ver a un especialista.",                  "I need to see a specialist.",      "Neh-seh-SEE-toh behr ah oon es-peh-syah-LEES-tah"),
-            ("Tengo una intolerancia alimentaria.",              "I have a food intolerance.",       "TEHN-goh OO-nah een-toh-leh-RAHN-syah ah-lee-mehn-TAH-ryah"),
-            ("Hago yoga por las mañanas.",                      "I do yoga in the mornings.",       "AH-goh YOH-gah por lahs mah-NYAH-nahs"),
-            ("El equilibrio trabajo-vida es clave.",             "Work-life balance is key.",        "El eh-kee-LEE-bryoh trah-BAH-hoh-BEE-dah es KLAH-beh"),
-            ("Duermo ocho horas cada noche.",                    "I sleep eight hours every night.", "DWEHR-moh OH-choh OH-rahs KAH-dah NOH-cheh"),
-        ],
-    },
-    {
-        "theme": "Philosophy & Deep Conversations",
-        "roadmap": "C1 Advanced — Existential Spanish. For those late-night conversations that actually matter.",
-        "phrases": [
-            ("¿En qué consiste una buena vida?",     "What does a good life consist of?",   "En keh kohn-SEES-teh OO-nah BWEH-nah BEE-dah"),
-            ("La felicidad no se compra.",           "Happiness cannot be bought.",         "Lah feh-lee-see-DAHD noh seh KOHM-prah"),
-            ("Todo cambia, nada permanece.",         "Everything changes, nothing remains.", "TOH-doh KAHM-byah, NAH-dah pehr-mah-NEH-seh"),
-            ("El conocimiento es poder.",            "Knowledge is power.",                 "El koh-noh-SYEHN-toh es poh-DEHR"),
-            ("Vivir es arriesgarse.",                "To live is to take risks.",           "Bee-BEER es ah-ryehs-GAR-seh"),
-        ],
-    },
-    {
-        "theme": "Weather & Nature",
-        "roadmap": "C1 Advanced — Describe the natural world. Read Lorca, write postcards, appreciate the sublime.",
-        "phrases": [
-            ("El cielo está cubierto de nubarrones.", "The sky is covered in storm clouds.",     "El SYEH-loh es-TAH koo-BYEHR-toh deh noo-bah-ROH-nehs"),
-            ("Hace un calor sofocante.",              "It's sweltering hot.",                    "AH-seh oon kah-LOR soh-foh-KAHN-teh"),
-            ("El amanecer es espectacular.",          "The sunrise is spectacular.",             "El ah-mah-neh-SEHR es es-pek-tah-koo-LAR"),
-            ("Disfruto los paseos por la naturaleza.","I enjoy walks in nature.",               "Dees-FROO-toh lohs pah-SEH-ohs por lah nah-too-RAH-leh-sah"),
-            ("La lluvia tiene algo de melancólico.",  "Rain has something melancholic about it.","Lah YOO-byah TYEH-neh AL-goh deh meh-lahn-KOH-lee-koh"),
-        ],
-    },
-    {
-        "theme": "Relationships & Social Life",
-        "roadmap": "C1 Advanced — The language of connection. Friendship, love, and everything in between.",
-        "phrases": [
-            ("Eres la persona más importante en mi vida.", "You're the most important person in my life.", "EH-rehs lah pehr-SOH-nah mahs eem-por-TAHN-teh en mee BEE-dah"),
-            ("Hay que cuidar las amistades.",              "One must nurture friendships.",               "Ay keh kwee-DAR lahs ah-mees-TAH-dehs"),
-            ("¿Quedamos para tomar algo mañana?",          "Shall we meet for drinks tomorrow?",          "Keh-DAH-mohs PAH-rah toh-MAR AL-goh mah-NYAH-nah"),
-            ("Me has inspirado mucho.",                    "You've inspired me a lot.",                   "Meh ahs een-spee-RAH-doh MOO-choh"),
-            ("Te deseo todo lo mejor.",                   "I wish you all the best.",                    "Teh deh-SEH-oh TOH-doh loh meh-HOR"),
-        ],
-    },
-    {
-        "theme": "Ambition & Future",
-        "roadmap": "C2 Mastery — Articulate your biggest dreams and boldest visions in flawless español. You've arrived.",
-        "phrases": [
-            ("Tengo grandes planes para el futuro.",               "I have big plans for the future.",            "TEHN-goh GRAHN-dehs PLAH-nehs PAH-rah el foo-TOO-roh"),
-            ("Nunca es demasiado tarde para empezar.",             "It's never too late to start.",               "NOON-kah es deh-mah-SYAH-doh TAR-deh PAH-rah em-peh-SAR"),
-            ("Estoy construyendo algo significativo.",             "I am building something meaningful.",         "Es-TOY kohn-stroo-YEHN-doh AL-goh seeg-nee-fee-KAH-tee-boh"),
-            ("El éxito es el resultado del esfuerzo sostenido.",  "Success is the result of sustained effort.",  "El EK-see-toh es el reh-soul-TAH-doh del es-FWEHR-soh sohs-teh-NEE-doh"),
-            ("Cada día me acerco más a mis metas.",               "Each day I get closer to my goals.",          "KAH-dah DEE-ah meh ah-SEHR-koh mahs ah mees MEH-tahs"),
-        ],
-    },
+SPANISH_LESSONS = [
+    # A1→B1 progressive curriculum — 30 daily lessons building from absolute zero
+    # Lesson 1: First words ever
+    {"type": "A1 · First Hello",
+     "items": [
+        ("Hola",          "Hello",          "¡Hola! ¿Cómo estás?",            "OH-lah"),
+        ("Buenos días",   "Good morning",   "Buenos días, ¿cómo estás?",      "BWEH-nohs DEE-ahs"),
+        ("Buenas tardes", "Good afternoon", "Buenas tardes, señorita.",        "BWEH-nahs TAR-dehs"),
+        ("Buenas noches", "Good evening",   "Buenas noches, hasta mañana.",    "BWEH-nahs NOH-chehs"),
+        ("Adiós",         "Goodbye",        "¡Adiós! Hasta pronto.",           "ah-DYOHS"),
+    ]},
+    # Lesson 2: What's your name?
+    {"type": "A1 · Your Name",
+     "items": [
+        ("¿Cómo te llamas?", "What's your name?",  "¿Cómo te llamas tú?",          "KOH-moh teh YAH-mahs"),
+        ("Me llamo…",        "My name is…",         "Me llamo Saloni.",              "meh YAH-moh"),
+        ("¿Y tú?",           "And you?",            "Me llamo Ana. ¿Y tú?",          "ee TOO"),
+        ("Mucho gusto.",     "Nice to meet you.",   "Mucho gusto, me llamo Carlos.", "MOO-choh GOOS-toh"),
+        ("Encantada.",       "Delighted. (f)",      "Encantada de conocerte.",       "en-kahn-TAH-dah"),
+    ]},
+    # Lesson 3: Who are you?
+    {"type": "A1 · Who Are You?",
+     "items": [
+        ("¿Quién eres?",   "Who are you?",       "¿Quién eres tú?",               "KYEHN EH-rehs"),
+        ("¿Quién es él?",  "Who is he?",         "¿Quién es él? Es mi amigo.",    "KYEHN es EL"),
+        ("¿Quién es ella?","Who is she?",         "¿Quién es ella? Es mi hermana.","KYEHN es EH-yah"),
+        ("Él es…",         "He is…",             "Él es mi profesor.",            "el es"),
+        ("Ella es…",       "She is…",            "Ella es mi madre.",             "EH-yah es"),
+    ]},
+    # Lesson 4: How are you?
+    {"type": "A1 · How Are You?",
+     "items": [
+        ("¿Cómo estás?",  "How are you?",   "¡Hola! ¿Cómo estás?",           "KOH-moh es-TAHS"),
+        ("Estoy bien.",   "I'm fine.",      "Estoy bien, gracias.",           "es-TOY byehn"),
+        ("Estoy mal.",    "I'm not well.",  "Hoy estoy un poco mal.",         "es-TOY mahl"),
+        ("Más o menos.",  "So-so.",         "¿Cómo estás? Más o menos.",      "mahs oh MEH-nohs"),
+        ("¿Y tú?",        "And you?",       "Estoy bien. ¿Y tú?",             "ee TOO"),
+    ]},
+    # Lesson 5: Please, thank you, sorry
+    {"type": "A1 · Please & Thank You",
+     "items": [
+        ("Por favor",   "Please",          "Un café, por favor.",            "por fah-VOR"),
+        ("Gracias",     "Thank you",       "Muchas gracias.",                "GRAH-syahs"),
+        ("De nada",     "You're welcome",  "— Gracias. — ¡De nada!",        "deh NAH-dah"),
+        ("Lo siento",   "I'm sorry",       "Lo siento mucho.",               "loh SYEHN-toh"),
+        ("Perdón",      "Excuse me",       "Perdón, ¿dónde está el baño?",  "pehr-DOHN"),
+    ]},
+    # Lesson 6: Yes, no, basics
+    {"type": "A1 · Yes & No",
+     "items": [
+        ("Sí",          "Yes",             "Sí, quiero.",                    "see"),
+        ("No",          "No",              "No, gracias.",                   "noh"),
+        ("Claro",       "Of course",       "¡Claro que sí!",                 "KLAH-roh"),
+        ("No sé",       "I don't know",    "No sé dónde está.",              "noh seh"),
+        ("No entiendo", "I don't understand","No entiendo, ¿puede repetir?", "noh en-TYEHN-doh"),
+    ]},
+    # Lesson 7: Numbers 1–5
+    {"type": "A1 · Numbers 1–5",
+     "items": [
+        ("uno",    "one",   "Tengo un hermano.",          "OO-noh"),
+        ("dos",    "two",   "Son las dos de la tarde.",   "dohs"),
+        ("tres",   "three", "Necesito tres cosas.",       "trehs"),
+        ("cuatro", "four",  "Hay cuatro personas aquí.",  "KWAH-troh"),
+        ("cinco",  "five",  "Son las cinco en punto.",    "SEEN-koh"),
+    ]},
+    # Lesson 8: Numbers 6–10
+    {"type": "A1 · Numbers 6–10",
+     "items": [
+        ("seis",  "six",   "Tengo seis libros.",          "sehees"),
+        ("siete", "seven", "Hay siete días en la semana.","SYEH-teh"),
+        ("ocho",  "eight", "Son las ocho de la mañana.", "OH-choh"),
+        ("nueve", "nine",  "Dormí nueve horas.",          "NWEH-beh"),
+        ("diez",  "ten",   "Tengo diez dedos.",           "dyehs"),
+    ]},
+    # Lesson 9: Where are you from?
+    {"type": "A1 · Where Are You From?",
+     "items": [
+        ("¿De dónde eres?", "Where are you from?",  "¿De dónde eres tú?",           "deh DON-deh EH-rehs"),
+        ("Soy de India.",   "I'm from India.",      "Soy de India, de Mumbai.",      "soy deh EEN-dyah"),
+        ("¿Dónde vives?",   "Where do you live?",   "¿Dónde vives ahora?",           "DON-deh BEE-behs"),
+        ("Vivo en…",        "I live in…",           "Vivo en Mumbai.",               "BEE-boh en"),
+        ("¿Hablas español?","Do you speak Spanish?","¿Hablas español o inglés?",     "AH-blahs es-pah-NYOL"),
+    ]},
+    # Lesson 10: Days Monday–Friday
+    {"type": "A1 · Days of the Week I",
+     "items": [
+        ("lunes",     "Monday",    "El lunes tengo clase.",         "LOO-nehs"),
+        ("martes",    "Tuesday",   "Los martes voy al gimnasio.",   "MAR-tehs"),
+        ("miércoles", "Wednesday", "Los miércoles como fuera.",     "MYEHR-koh-lehs"),
+        ("jueves",    "Thursday",  "El jueves hay reunión.",        "HWEH-behs"),
+        ("viernes",   "Friday",    "¡Hoy es viernes! ¡Yay!",       "BYEHR-nehs"),
+    ]},
+    # Lesson 11: Days + today/yesterday/tomorrow
+    {"type": "A1 · Days of the Week II",
+     "items": [
+        ("sábado",  "Saturday",   "El sábado salgo con amigos.",   "SAH-bah-doh"),
+        ("domingo", "Sunday",     "El domingo descanso.",          "doh-MEEN-goh"),
+        ("hoy",     "today",      "Hoy es lunes.",                 "oy"),
+        ("mañana",  "tomorrow",   "Mañana tengo examen.",          "mah-NYAH-nah"),
+        ("ayer",    "yesterday",  "Ayer llovió mucho.",            "ah-YEHR"),
+    ]},
+    # Lesson 12: Basic colours
+    {"type": "A1 · Colours",
+     "items": [
+        ("rojo",     "red",     "El tomate es rojo.",          "ROH-hoh"),
+        ("azul",     "blue",    "El cielo es azul.",           "ah-SOOL"),
+        ("verde",    "green",   "La hierba es verde.",         "BEHR-deh"),
+        ("amarillo", "yellow",  "El sol es amarillo.",         "ah-mah-REE-yoh"),
+        ("negro",    "black",   "Llevo una camisa negra.",     "NEH-groh"),
+    ]},
+    # Lesson 13: Family
+    {"type": "A1 · Family",
+     "items": [
+        ("la madre",   "mother",    "Mi madre cocina muy bien.",     "lah MAH-dreh"),
+        ("el padre",   "father",    "Mi padre trabaja mucho.",       "el PAH-dreh"),
+        ("el hermano", "brother",   "Tengo un hermano mayor.",       "el ehr-MAH-noh"),
+        ("la hermana", "sister",    "Mi hermana vive en Delhi.",     "lah ehr-MAH-nah"),
+        ("la familia", "the family","Mi familia es muy grande.",     "lah fah-MEE-lyah"),
+    ]},
+    # Lesson 14: Common objects
+    {"type": "A1 · Everyday Things",
+     "items": [
+        ("la casa",  "the house", "Mi casa es pequeña pero bonita.", "lah KAH-sah"),
+        ("el libro", "the book",  "Estoy leyendo un libro.",         "el LEE-broh"),
+        ("el agua",  "water",     "Quiero agua, por favor.",         "el AH-gwah"),
+        ("la mesa",  "the table", "La mesa está en la cocina.",      "lah MEH-sah"),
+        ("la silla", "the chair", "¿Puedo sentarme en esta silla?",  "lah SEE-yah"),
+    ]},
+    # Lesson 15: SER — to be (permanent)
+    {"type": "A1 · 'To Be' — ser",
+     "items": [
+        ("Soy",    "I am",      "Soy estudiante.",             "soy"),
+        ("Eres",   "You are",   "Eres muy simpática.",         "EH-rehs"),
+        ("Es",     "He/She is", "Ella es mi profesora.",       "es"),
+        ("Somos",  "We are",    "Somos de India.",             "SOH-mohs"),
+        ("Son",    "They are",  "Son las tres de la tarde.",   "sohn"),
+    ]},
+    # Lesson 16: ESTAR — to be (temporary/location)
+    {"type": "A1 · 'To Be' — estar",
+     "items": [
+        ("Estoy",   "I am",      "Estoy en Mumbai.",           "es-TOY"),
+        ("Estás",   "You are",   "¿Cómo estás?",              "es-TAHS"),
+        ("Está",    "He/She is", "Él está cansado.",           "es-TAH"),
+        ("Estamos", "We are",    "Estamos en el café.",        "es-TAH-mohs"),
+        ("Están",   "They are",  "¿Dónde están mis llaves?",  "es-TAHN"),
+    ]},
+    # Lesson 17: Question words
+    {"type": "A1 · Question Words",
+     "items": [
+        ("¿Qué?",     "What?",  "¿Qué quieres comer?",        "keh"),
+        ("¿Dónde?",   "Where?", "¿Dónde está el baño?",       "DON-deh"),
+        ("¿Cuándo?",  "When?",  "¿Cuándo llega el tren?",     "KWAHN-doh"),
+        ("¿Por qué?", "Why?",   "¿Por qué estás triste?",     "por KEH"),
+        ("¿Cómo?",    "How?",   "¿Cómo se dice 'train'?",     "KOH-moh"),
+    ]},
+    # Lesson 18: I want / I need / I have
+    {"type": "A1 · I Want & I Need",
+     "items": [
+        ("Quiero…",    "I want…",   "Quiero un café, por favor.",  "KYEH-roh"),
+        ("Necesito…",  "I need…",   "Necesito ayuda.",             "neh-seh-SEE-toh"),
+        ("Tengo…",     "I have…",   "Tengo hambre.",               "TEHN-goh"),
+        ("No tengo…",  "I don't have…","No tengo dinero.",         "noh TEHN-goh"),
+        ("¿Tienes…?",  "Do you have…?","¿Tienes un bolígrafo?",    "TYEH-nehs"),
+    ]},
+    # Lesson 19: Café & food basics
+    {"type": "A1 · At the Café",
+     "items": [
+        ("el café",     "coffee",          "Un café con leche, por favor.",     "el kah-FEH"),
+        ("el té",       "tea",             "Quiero un té verde.",               "el teh"),
+        ("el pan",      "bread",           "¿Me da pan, por favor?",            "el pahn"),
+        ("la leche",    "milk",            "¿Tiene leche de avena?",            "lah LEH-cheh"),
+        ("La cuenta.",  "The bill.",       "La cuenta, cuando pueda.",          "lah KWEHN-tah"),
+    ]},
+    # Lesson 20: Simple verbs go/come/eat
+    {"type": "A1 · Simple Verbs",
+     "items": [
+        ("voy / vas",   "I go / you go",   "Voy al trabajo.",                "boy / bahs"),
+        ("vengo / vienes","I come/you come","¿Vienes a la fiesta?",           "BEHN-goh / BYEH-nehs"),
+        ("como / comes","I eat / you eat",  "Como pizza los viernes.",        "KOH-moh / KOH-mehs"),
+        ("bebo / bebes","I drink/you drink","¿Qué bebes tú?",                 "BEH-boh / BEH-behs"),
+        ("hablo / hablas","I speak/you speak","¿Hablas español?",             "AH-bloh / AH-blahs"),
+    ]},
+    # Lesson 21: Telling the time
+    {"type": "A1 · Telling the Time",
+     "items": [
+        ("¿Qué hora es?",  "What time is it?",  "¿Qué hora es, por favor?",     "keh OH-rah es"),
+        ("Es la una.",     "It's one o'clock.", "Son las reuniones a la una.",   "es lah OO-nah"),
+        ("Son las dos.",   "It's two o'clock.", "Son las dos de la tarde.",      "sohn lahs dohs"),
+        ("de la mañana",   "in the morning",    "Son las ocho de la mañana.",   "deh lah mah-NYAH-nah"),
+        ("de la noche",    "at night",          "Son las diez de la noche.",    "deh lah NOH-cheh"),
+    ]},
+    # Lesson 22: Numbers 11–20
+    {"type": "A1 · Numbers 11–20",
+     "items": [
+        ("once / doce",     "eleven / twelve",    "Hay doce meses en el año.",   "OHN-seh / DOH-seh"),
+        ("trece / catorce", "thirteen / fourteen","Tengo catorce primas.",        "TREH-seh / kah-TOR-seh"),
+        ("quince",          "fifteen",            "Quince minutos, por favor.",  "KEEN-seh"),
+        ("dieciséis / diecisiete","16 / 17",      "Tengo diecisiete años.",      "dyeh-see-SEHEES"),
+        ("veinte",          "twenty",             "Hay veinte personas aquí.",   "BEHN-teh"),
+    ]},
+    # Lesson 23: Basic adjectives
+    {"type": "A2 · Describing Things",
+     "items": [
+        ("grande",    "big",       "La ciudad es muy grande.",      "GRAHN-deh"),
+        ("pequeño/a", "small",     "Tengo un apartamento pequeño.", "peh-KEH-nyoh"),
+        ("bonito/a",  "pretty",    "Qué día tan bonito.",           "boh-NEE-toh"),
+        ("fácil",     "easy",      "Esta lección es muy fácil.",    "FAH-seel"),
+        ("difícil",   "difficult", "La gramática es difícil.",      "dee-FEE-seel"),
+    ]},
+    # Lesson 24: Feelings
+    {"type": "A2 · Feelings",
+     "items": [
+        ("feliz",        "happy",    "Estoy muy feliz hoy.",            "feh-LEES"),
+        ("triste",       "sad",      "Me siento un poco triste.",       "TREES-teh"),
+        ("cansada/o",    "tired",    "Estoy muy cansada hoy.",          "kahn-SAH-dah"),
+        ("emocionada/o", "excited",  "¡Estoy emocionada con el viaje!", "eh-moh-syoh-NAH-dah"),
+        ("tranquila/o",  "calm",     "Respira. Sé tranquila.",          "trahn-KEE-lah"),
+    ]},
+    # Lesson 25: Directions
+    {"type": "A2 · Directions",
+     "items": [
+        ("a la derecha",  "on the right",    "El banco está a la derecha.", "ah lah deh-REH-chah"),
+        ("a la izquierda","on the left",     "Gira a la izquierda aquí.",   "ah lah ees-KYEHR-dah"),
+        ("todo recto",    "straight ahead",  "Sigue todo recto.",           "TOH-doh REK-toh"),
+        ("cerca de",      "near",            "Está cerca de la estación.",  "SEHR-kah deh"),
+        ("lejos de",      "far from",        "Está lejos de aquí.",         "LEH-hohs deh"),
+    ]},
+    # Lesson 26: Weather
+    {"type": "A2 · Weather",
+     "items": [
+        ("¿Qué tiempo hace?","What's the weather?","¿Qué tiempo hace hoy?",       "keh TYEHM-poh AH-seh"),
+        ("Hace calor.",  "It's hot.",         "Hace mucho calor en verano.",   "AH-seh kah-LOR"),
+        ("Hace frío.",   "It's cold.",        "Hace frío en diciembre.",       "AH-seh FREE-oh"),
+        ("Llueve.",      "It's raining.",     "Hoy llueve mucho.",             "YWE-beh"),
+        ("Hace sol.",    "It's sunny.",       "Hace sol — ¡perfecto!",         "AH-seh sohl"),
+    ]},
+    # Lesson 27: Ser vs Estar in practice
+    {"type": "A2 · Ser vs Estar",
+     "items": [
+        ("Soy alta.",      "I am tall. (trait)",      "Soy alta y delgada.",          "soy AHL-tah"),
+        ("Estoy aquí.",    "I am here. (location)",   "Estoy aquí en el café.",       "es-TOY ah-KEE"),
+        ("Es bonita.",     "It's pretty. (permanent)","La ciudad es bonita.",         "es boh-NEE-tah"),
+        ("Está abierto.",  "It's open. (state)",      "La tienda está abierta.",      "es-TAH ah-BYEHR-toh"),
+        ("Somos amigos.",  "We are friends.",          "Somos amigos desde siempre.", "SOH-mohs ah-MEE-gohs"),
+    ]},
+    # Lesson 28: -AR verb conjugation
+    {"type": "A2 · -AR Verbs",
+     "items": [
+        ("(yo) hablo",        "I speak",    "Hablo español un poco.",        "AH-bloh"),
+        ("(tú) caminas",      "you walk",   "Caminas muy rápido.",           "kah-MEE-nahs"),
+        ("(él/ella) trabaja", "he/she works","Mi madre trabaja en casa.",    "trah-BAH-hah"),
+        ("(nosotros) cantamos","we sing",   "Cantamos en el coche.",         "kahn-TAH-mohs"),
+        ("(ellos) bailan",    "they dance", "Ellos bailan muy bien.",        "BAH-ee-lahn"),
+    ]},
+    # Lesson 29: Daily routine (reflexive verbs)
+    {"type": "A2 · Daily Routine",
+     "items": [
+        ("Me levanto",   "I get up",     "Me levanto a las siete.",       "meh leh-BAHN-toh"),
+        ("Me ducho",     "I shower",     "Me ducho por la mañana.",       "meh DOO-choh"),
+        ("Desayuno",     "I eat breakfast","Desayuno a las ocho.",         "deh-sah-YOO-noh"),
+        ("Trabajo",      "I work",       "Trabajo de nueve a seis.",      "trah-BAH-hoh"),
+        ("Me acuesto",   "I go to bed",  "Me acuesto a las once.",        "meh ah-KWES-toh"),
+    ]},
+    # Lesson 30: Useful idioms & survival phrases
+    {"type": "A2 · Handy Phrases",
+     "items": [
+        ("¿Me puede ayudar?","Can you help me?",    "Perdón, ¿me puede ayudar?",    "meh PWEH-deh ah-yoo-DAR"),
+        ("No hablo bien español.","I don't speak Spanish well.","No hablo bien español, lo siento.","noh AH-bloh byehn"),
+        ("¿Puede repetir?", "Can you repeat?",      "¿Puede repetir más despacio?", "PWEH-deh reh-peh-TEER"),
+        ("¡Qué guay!",      "How cool!",            "¡Qué guay ese lugar!",         "keh gwah-ee"),
+        ("¡Venga!",         "Let's go! / Come on!", "¡Venga, que llegamos tarde!",  "BEHN-gah"),
+    ]},
 ]
 
 # ══════════════════════════════════════════════════════════
@@ -345,9 +452,9 @@ def fetch_market_data():
             log(f"{label} failed — {exc}", "✗")
             return {"label": label, "symbol": symbol, "price": "N/A", "change": 0, "error": True}
 
-    markets["nifty"]  = get_yahoo("^NSEI",  "Nifty 50")
-    markets["sensex"] = get_yahoo("^BSESN", "Sensex")
-    markets["sp500"]  = get_yahoo("^GSPC",  "S&P 500")
+    markets["nifty"]  = {**get_yahoo("^NSEI",  "Nifty 50"),  "key": "nifty"}
+    markets["sensex"] = {**get_yahoo("^BSESN", "Sensex"),    "key": "sensex"}
+    markets["sp500"]  = {**get_yahoo("^GSPC",  "S&P 500"),   "key": "sp500"}
 
     # Bitcoin via CoinGecko free API
     try:
@@ -360,7 +467,7 @@ def fetch_market_data():
         btc_price = data["bitcoin"]["usd"]
         btc_chg   = data["bitcoin"]["usd_24h_change"]
         markets["bitcoin"] = {
-            "label": "Bitcoin", "symbol": "BTC",
+            "label": "Bitcoin", "symbol": "BTC", "key": "bitcoin",
             "price": f"{btc_price:,.0f}", "prefix": "$",
             "change": btc_chg, "change_str": f"{btc_chg:+.2f}%",
             "up": btc_chg >= 0, "error": False,
@@ -368,7 +475,7 @@ def fetch_market_data():
         log(f"Bitcoin: ${btc_price:,.0f} ({btc_chg:+.2f}%)")
     except Exception as exc:
         log(f"Bitcoin failed — {exc}", "✗")
-        markets["bitcoin"] = {"label": "Bitcoin", "symbol": "BTC", "price": "N/A", "change": 0, "error": True}
+        markets["bitcoin"] = {"label": "Bitcoin", "symbol": "BTC", "key": "bitcoin", "price": "N/A", "change": 0, "error": True}
 
     for key in ("nifty", "sensex", "sp500"):
         m = markets[key]
@@ -518,10 +625,10 @@ def parse_sections(digest_text):
 # ══════════════════════════════════════════════════════════
 def get_spanish_lesson():
     day_of_year = datetime.datetime.now().timetuple().tm_yday
-    idx         = (day_of_year - 1) % len(SPANISH_THEMES)
-    lesson      = dict(SPANISH_THEMES[idx])
+    idx         = (day_of_year - 1) % len(SPANISH_LESSONS)
+    lesson      = dict(SPANISH_LESSONS[idx])
     lesson["index"] = idx + 1
-    lesson["total"] = len(SPANISH_THEMES)
+    lesson["total"] = len(SPANISH_LESSONS)
     return lesson
 
 # ══════════════════════════════════════════════════════════
@@ -583,22 +690,31 @@ def speed_to_html(text):
 # ══════════════════════════════════════════════════════════
 # HTML BUILDER
 # ══════════════════════════════════════════════════════════
+MARKET_LINKS = {
+    "nifty":   "https://finance.yahoo.com/quote/%5ENSEI/",
+    "sensex":  "https://finance.yahoo.com/quote/%5EBSESN/",
+    "sp500":   "https://finance.yahoo.com/quote/%5EGSPC/",
+    "bitcoin": "https://www.coingecko.com/en/coins/bitcoin",
+}
+
 def _market_card(m, default_prefix=""):
     label  = m.get("label", "")
+    key    = m.get("key", "")
+    link   = MARKET_LINKS.get(key, "#")
     if m.get("error"):
-        return f"""<div class="market-card">
-          <div class="market-label">{label}</div>
-          <div class="market-price">N/A</div>
-          <div class="market-change neutral">—</div>
-        </div>"""
+        return (f'<a class="market-card" href="{link}" target="_blank" rel="noopener">'
+                f'<span class="market-label">{label}</span>'
+                f'<span class="market-price">N/A</span>'
+                f'<span class="market-change neutral">—</span>'
+                f'</a>')
     color  = "gain" if m.get("up", True) else "loss"
     arrow  = "▲" if m.get("up", True) else "▼"
     prefix = m.get("prefix", default_prefix)
-    return f"""<div class="market-card">
-          <div class="market-label">{label}</div>
-          <div class="market-price">{prefix}{m['price']}</div>
-          <div class="market-change {color}">{arrow} {m.get('change_str', '')}</div>
-        </div>"""
+    return (f'<a class="market-card" href="{link}" target="_blank" rel="noopener">'
+            f'<span class="market-label">{label}</span>'
+            f'<span class="market-price">{prefix}{m["price"]}</span>'
+            f'<span class="market-change {color}">{arrow} {m.get("change_str", "")}</span>'
+            f'</a>')
 
 def _section_card(icon, title, slug, card_class, sections):
     body = md_to_html(sections.get(slug, ""))
@@ -615,21 +731,25 @@ def build_html(sections, markets, spanish, all_articles):
     date_str = now.strftime("%A, %d %B %Y")
     time_str = now.strftime("%H:%M")
 
+    pipe = '<span class="ticker-pipe">|</span>'
     ticker_html = (
-        _market_card(markets.get("nifty",   {"label": "Nifty 50",  "error": True})) +
-        _market_card(markets.get("sensex",  {"label": "Sensex",    "error": True})) +
-        _market_card(markets.get("sp500",   {"label": "S&P 500",   "error": True})) +
-        _market_card(markets.get("bitcoin", {"label": "Bitcoin",   "error": True}))
+        '<span class="ticker-markets-label">Markets</span>' + pipe +
+        _market_card(markets.get("nifty",   {"label": "Nifty 50",  "key": "nifty",   "error": True})) + pipe +
+        _market_card(markets.get("sensex",  {"label": "Sensex",    "key": "sensex",  "error": True})) + pipe +
+        _market_card(markets.get("sp500",   {"label": "S&P 500",   "key": "sp500",   "error": True})) + pipe +
+        _market_card(markets.get("bitcoin", {"label": "Bitcoin",   "key": "bitcoin", "error": True}))
     )
 
-    # Spanish phrases table rows
-    phrase_rows = ""
-    for phrase, meaning, pron in spanish["phrases"]:
-        phrase_rows += f"""<tr>
-              <td class="es-phrase">{phrase}</td>
-              <td class="es-meaning">{meaning}</td>
-              <td class="es-pron">{pron}</td>
-            </tr>"""
+    # Spanish vocab cards (Duolingo-style)
+    vocab_cards = ""
+    for es, en, example, pron in spanish["items"]:
+        pron_html = f'<div class="vocab-pron">{pron}</div>' if pron else ""
+        vocab_cards += f"""<div class="vocab-card">
+              <div class="vocab-es">{es}</div>
+              <div class="vocab-en">{en}</div>
+              <div class="vocab-example">{example}</div>
+              {pron_html}
+            </div>"""
 
     # Footer source credits
     all_sources = sorted({a["source"] for arts in all_articles.values() for a in arts})
@@ -643,350 +763,368 @@ def build_html(sections, markets, spanish, all_articles):
 <title>{DIGEST_TITLE} — {date_str}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {{
-    --bg:         #0c0508;
-    --bg-card:    #160b0e;
-    --bg-card2:   #1e1014;
-    --burgundy:   #7b1a2d;
-    --burg-mid:   #9e2238;
-    --burg-lite:  #c4365a;
-    --gold:       #c9a552;
-    --gold-lite:  #e0c07a;
-    --cream:      #f0e8d8;
-    --cream-dim:  #b0a088;
-    --cream-sub:  #7a6e5e;
-    --gain:       #5dbf8a;
-    --loss:       #e05c5c;
-    --neutral:    #888;
-    --border:     rgba(201,165,82,0.16);
-    --glow:       rgba(123,26,45,0.3);
+    --paper:        #f6f1e7;
+    --paper-dark:   #ede8da;
+    --paper-white:  #ffffff;
+    --ink:          #111111;
+    --ink-dim:      #333333;
+    --ink-light:    #666666;
+    --ink-faint:    #999999;
+    --red:          #c0001a;
+    --border:       rgba(0,0,0,0.18);
+    --border-light: rgba(0,0,0,0.08);
+    --gain:         #1a6b35;
+    --loss:         #b50016;
+    --neutral:      #777;
   }}
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
   body {{
-    background: var(--bg);
-    color: var(--cream);
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1rem;
     line-height: 1.75;
     min-height: 100vh;
   }}
 
-  /* ── HEADER ─────────────────────────────── */
-  .site-header {{
-    background: linear-gradient(135deg, #0c0508 0%, #1a0810 45%, #0f0307 100%);
-    border-bottom: 1px solid var(--border);
-    padding: 2.5rem 4rem 2rem;
+  /* ── TOP RULE ─────────────────────────────── */
+  .top-rule {{
+    height: 4px;
+    background: var(--red);
+  }}
+
+  /* ── MASTHEAD ─────────────────────────────── */
+  .masthead {{
+    background: var(--paper);
+    border-bottom: 3px double var(--ink);
+    padding: 0.9rem 4rem 1.5rem;
+    text-align: center;
+  }}
+  .masthead-meta {{
     display: flex;
-    align-items: flex-end;
     justify-content: space-between;
-    position: relative;
-    overflow: hidden;
-  }}
-  .site-header::before {{
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 15% 60%, rgba(123,26,45,0.18) 0%, transparent 55%);
-    pointer-events: none;
-  }}
-  .header-left {{ position: relative; }}
-  .header-eyebrow {{
-    font-size: 0.68rem;
+    align-items: center;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.65rem;
     font-weight: 500;
-    letter-spacing: 0.38em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
+    color: var(--ink-light);
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
   }}
-  .header-title {{
+  .masthead-eyebrow {{
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.3rem;
+  }}
+  .masthead-title {{
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3.4rem);
-    font-weight: 700;
-    color: var(--cream);
-    line-height: 1.1;
+    font-size: clamp(2.6rem, 7vw, 4.8rem);
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.0;
     letter-spacing: -0.02em;
   }}
-  .header-title span {{ color: var(--burg-lite); font-style: italic; }}
-  .header-tagline {{
-    font-size: 0.84rem;
-    color: var(--cream-dim);
-    margin-top: 0.55rem;
+  .masthead-title em {{
     font-style: italic;
+    font-weight: 700;
   }}
-  .header-right {{ text-align: right; position: relative; }}
-  .header-date {{
-    font-family: 'Playfair Display', serif;
+  .masthead-tagline {{
+    font-family: 'EB Garamond', serif;
     font-size: 1rem;
-    color: var(--cream-dim);
     font-style: italic;
+    color: var(--ink-light);
+    margin-top: 0.4rem;
   }}
-  .header-time {{
-    font-size: 0.72rem;
-    color: var(--cream-sub);
-    margin-top: 0.3rem;
-    letter-spacing: 0.12em;
+  @media (max-width: 900px) {{
+    .masthead {{ padding-left: 1.5rem; padding-right: 1.5rem; }}
+    .masthead-meta {{ font-size: 0.55rem; }}
   }}
 
   /* ── MARKET TICKER ───────────────────────── */
   .ticker-bar {{
-    background: var(--bg-card);
+    background: var(--paper);
+    border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    padding: 1.1rem 4rem;
-    display: flex;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-    align-items: center;
+    padding: 0.75rem 4rem;
   }}
-  .ticker-label {{
-    font-size: 0.64rem;
+  .ticker-inner {{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+  }}
+  .ticker-markets-label {{
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
     font-weight: 600;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--cream-sub);
-    margin-right: 0.5rem;
+    color: var(--ink-light);
+  }}
+  .ticker-pipe {{
+    color: var(--border);
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1;
+    user-select: none;
   }}
   .market-card {{
-    display: flex;
-    flex-direction: column;
-    gap: 0.08rem;
-    padding: 0.55rem 1.1rem;
-    background: var(--bg-card2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    min-width: 108px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0.15rem 0.35rem;
+    border-radius: 2px;
+    transition: background 0.15s;
   }}
-  .market-label  {{ font-size: 0.63rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream-sub); }}
-  .market-price  {{ font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--cream); }}
-  .market-change {{ font-size: 0.73rem; font-weight: 500; }}
+  .market-card:hover {{ background: var(--paper-dark); }}
+  .market-label  {{ font-family: 'Jost', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); }}
+  .market-price  {{ font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--ink); font-weight: 700; }}
+  .market-change {{ font-family: 'Jost', sans-serif; font-size: 0.68rem; font-weight: 500; }}
   .market-change.gain    {{ color: var(--gain); }}
   .market-change.loss    {{ color: var(--loss); }}
   .market-change.neutral {{ color: var(--neutral); }}
 
   /* ── MAIN LAYOUT ─────────────────────────── */
   .main-wrap {{
-    max-width: 1400px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 3rem 4rem;
+    padding: 2.5rem 4rem;
   }}
   .section-grid {{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    gap: 1.8rem;
+    margin-bottom: 1.8rem;
   }}
   @media (max-width: 900px) {{
     .section-grid {{ grid-template-columns: 1fr; }}
-    .site-header, .ticker-bar, .main-wrap {{ padding-left: 1.5rem; padding-right: 1.5rem; }}
+    .masthead, .ticker-bar, .main-wrap {{ padding-left: 1.5rem; padding-right: 1.5rem; }}
   }}
 
   /* ── SECTION CARDS ───────────────────────── */
   .section-card {{
-    background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 8px;
     overflow: hidden;
-    transition: box-shadow 0.3s ease;
   }}
-  .section-card:hover {{ box-shadow: 0 8px 40px var(--glow); }}
-
-  .card-finance .section-header {{ background: linear-gradient(135deg, #091a0e, #0e2314); border-bottom-color: rgba(93,191,138,0.18); }}
-  .card-world .section-header   {{ background: linear-gradient(135deg, #090e1a, #0d1222); border-bottom-color: rgba(93,138,220,0.18); }}
-  .card-tech .section-header    {{ background: linear-gradient(135deg, #18100a, #22160a); border-bottom-color: rgba(220,180,93,0.2);  }}
-  .card-india .section-header   {{ background: linear-gradient(135deg, #1a0a0a, #220a0a); border-bottom-color: rgba(224,92,92,0.2);   }}
-
   .section-header {{
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 1.2rem 1.7rem;
-    border-bottom: 1px solid var(--border);
+    gap: 0.7rem;
+    padding: 0.85rem 1.4rem;
+    background: var(--ink);
+    border-bottom: 2px solid var(--ink);
   }}
-  .section-icon  {{ font-size: 1.15rem; }}
+  .section-icon  {{ font-size: 1rem; }}
   .section-title {{
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    font-weight: 700;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: var(--cream);
+    letter-spacing: 0.2em;
+    color: var(--paper);
   }}
   .section-body {{
-    padding: 1.7rem;
-    font-size: 0.9rem;
-    color: var(--cream-dim);
+    padding: 1.5rem;
+    font-size: 0.96rem;
+    color: var(--ink-dim);
     line-height: 1.82;
+    background: var(--paper);
   }}
   .section-body p {{ margin-bottom: 0.85rem; }}
   .section-body p:last-child {{ margin-bottom: 0; }}
-  .section-body strong {{ color: var(--cream); font-weight: 600; }}
-  .section-body em {{ color: var(--gold-lite); font-style: italic; }}
+  .section-body strong {{ color: var(--ink); font-weight: 700; }}
+  .section-body em {{ color: var(--ink-dim); font-style: italic; }}
   .section-body .spacer {{ height: 0.4rem; }}
-  .digest-list {{ padding-left: 1.1rem; margin: 0.5rem 0 0.85rem; }}
+  .digest-list {{ padding-left: 1.2rem; margin: 0.5rem 0 0.85rem; }}
   .digest-list li {{ margin-bottom: 0.35rem; }}
   .inline-heading {{
-    font-family: 'Playfair Display', serif;
-    font-size: 0.88rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
     font-weight: 600;
-    color: var(--cream);
+    color: var(--ink);
     margin: 1rem 0 0.35rem;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.12em;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.2rem;
   }}
 
   /* ── SPEED ROUND ─────────────────────────── */
   .speed-section {{
-    background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 8px;
     overflow: hidden;
-    margin-bottom: 2rem;
+    margin-bottom: 1.8rem;
   }}
   .speed-header {{
-    background: linear-gradient(135deg, #120a18, #18102a);
-    border-bottom: 1px solid rgba(196,54,90,0.18);
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 1.2rem 1.7rem;
+    gap: 0.7rem;
+    padding: 0.85rem 1.4rem;
+    background: var(--red);
   }}
-  .speed-body {{ padding: 1.4rem 1.7rem; }}
+  .speed-header .section-title {{ color: white; }}
+  .speed-body {{
+    padding: 1rem 1.2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: var(--paper);
+  }}
+  @media (max-width: 700px) {{ .speed-body {{ grid-template-columns: 1fr; }} }}
   .speed-item {{
-    padding: 0.58rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.045);
-    font-size: 0.88rem;
-    color: var(--cream-dim);
-    line-height: 1.65;
+    padding: 0.52rem 0.7rem;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 0.9rem;
+    color: var(--ink-dim);
+    line-height: 1.55;
   }}
   .speed-item:last-child {{ border-bottom: none; }}
-  .speed-item strong {{ color: var(--cream); }}
+  .speed-item strong {{ color: var(--ink); }}
 
   /* ── SPANISH SECTION ─────────────────────── */
   .spanish-section {{
-    background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 8px;
     overflow: hidden;
-    margin-bottom: 2rem;
+    margin-bottom: 1.8rem;
   }}
   .spanish-header {{
-    background: linear-gradient(135deg, #0a100f, #0c1714);
-    border-bottom: 1px solid rgba(201,165,82,0.15);
-    padding: 1.2rem 1.7rem;
+    background: var(--ink);
+    padding: 0.85rem 1.4rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 0.8rem;
+    gap: 0.7rem;
   }}
-  .spanish-title-group {{ display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }}
+  .spanish-title-group {{ display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; }}
   .spanish-badge {{
-    font-size: 0.63rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.58rem;
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--gold);
-    background: rgba(201,165,82,0.1);
-    border: 1px solid rgba(201,165,82,0.2);
-    padding: 0.22rem 0.65rem;
-    border-radius: 3px;
+    color: var(--ink);
+    background: var(--paper);
+    padding: 0.15rem 0.5rem;
   }}
-  .spanish-counter {{ font-size: 0.72rem; color: var(--cream-sub); }}
-  .spanish-body {{ padding: 1.7rem; }}
-  .spanish-roadmap {{
-    font-size: 0.82rem;
-    color: var(--gold);
-    background: rgba(201,165,82,0.07);
-    border-left: 3px solid var(--gold);
-    padding: 0.65rem 1rem;
-    border-radius: 0 4px 4px 0;
-    margin-bottom: 1.5rem;
-    font-style: italic;
+  .spanish-counter {{
+    font-family: 'Jost', sans-serif;
+    font-size: 0.62rem;
+    color: rgba(246,241,231,0.55);
+    letter-spacing: 0.08em;
   }}
-  .phrase-table {{
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.87rem;
+  .spanish-body {{ padding: 1.4rem; background: var(--paper); }}
+  .vocab-grid {{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.8rem;
   }}
-  .phrase-table th {{
-    text-align: left;
-    font-size: 0.63rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--cream-sub);
-    padding: 0 0 0.7rem;
-    border-bottom: 1px solid var(--border);
+  @media (max-width: 1100px) {{ .vocab-grid {{ grid-template-columns: repeat(3, 1fr); }} }}
+  @media (max-width: 700px)  {{ .vocab-grid {{ grid-template-columns: repeat(2, 1fr); }} }}
+  .vocab-card {{
+    background: var(--paper-white);
+    border: 1px solid var(--border);
+    padding: 1rem 1rem 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    transition: border-color 0.18s, box-shadow 0.18s;
   }}
-  .phrase-table tr {{ border-bottom: 1px solid rgba(255,255,255,0.04); }}
-  .phrase-table tr:last-child {{ border-bottom: none; }}
-  .es-phrase  {{
+  .vocab-card:hover {{
+    border-color: var(--ink);
+    box-shadow: 2px 2px 0 var(--ink);
+  }}
+  .vocab-es {{
     font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
     font-style: italic;
-    color: var(--cream);
-    padding: 0.7rem 1.2rem 0.7rem 0;
-    font-size: 0.95rem;
-    vertical-align: top;
-    width: 35%;
+    color: var(--ink);
+    font-weight: 600;
   }}
-  .es-meaning {{
-    color: var(--cream-dim);
-    padding: 0.7rem 1.2rem 0.7rem 0;
-    vertical-align: top;
-    width: 35%;
+  .vocab-en {{
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }}
-  .es-pron {{
-    color: var(--gold);
-    font-size: 0.78rem;
-    padding: 0.7rem 0;
-    vertical-align: top;
-    width: 30%;
+  .vocab-example {{
+    font-family: 'EB Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--ink-light);
     font-style: italic;
+    line-height: 1.5;
+    margin-top: 0.2rem;
+    flex: 1;
+  }}
+  .vocab-pron {{
+    font-family: 'Jost', sans-serif;
+    font-size: 0.62rem;
+    color: var(--ink-faint);
+    margin-top: 0.3rem;
+    letter-spacing: 0.04em;
   }}
 
   /* ── FOOTER ──────────────────────────────── */
   .site-footer {{
-    border-top: 1px solid var(--border);
-    padding: 1.8rem 4rem;
+    border-top: 3px double var(--ink);
+    padding: 1.4rem 4rem;
     text-align: center;
-    color: var(--cream-sub);
-    font-size: 0.73rem;
+    color: var(--ink-light);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.65rem;
     line-height: 1.9;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }}
   .footer-sources {{ max-width: 900px; margin: 0 auto 0.4rem; }}
   .footer-tag {{
-    font-family: 'Playfair Display', serif;
+    font-family: 'EB Garamond', serif;
     font-style: italic;
-    color: var(--cream-dim);
-    font-size: 0.78rem;
+    color: var(--ink-dim);
+    font-size: 0.9rem;
+    text-transform: none;
+    letter-spacing: 0;
   }}
 
   /* ── SCROLLBAR ───────────────────────────── */
   ::-webkit-scrollbar {{ width: 5px; }}
-  ::-webkit-scrollbar-track {{ background: var(--bg); }}
-  ::-webkit-scrollbar-thumb {{ background: var(--burgundy); border-radius: 3px; }}
+  ::-webkit-scrollbar-track {{ background: var(--paper); }}
+  ::-webkit-scrollbar-thumb {{ background: var(--ink); }}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="site-header">
-  <div class="header-left">
-    <p class="header-eyebrow">Your morning brief</p>
-    <h1 class="header-title">{OWNER_NAME}'s <span>Daily</span> Digest</h1>
-    <p class="header-tagline">Served sharp. No fluff. Just the world as it is.</p>
+<!-- MASTHEAD -->
+<div class="top-rule"></div>
+<header class="masthead">
+  <div class="masthead-meta">
+    <span>{date_str}</span>
+    <span>Generated at {time_str} IST</span>
   </div>
-  <div class="header-right">
-    <div class="header-date">{date_str}</div>
-    <div class="header-time">Generated at {time_str}</div>
-  </div>
+  <p class="masthead-eyebrow">Your morning brief</p>
+  <h1 class="masthead-title">{OWNER_NAME}'s <em>Daily</em> Digest</h1>
+  <p class="masthead-tagline">Served sharp. No fluff. Just the world as it is.</p>
 </header>
 
 <!-- MARKET TICKER -->
 <div class="ticker-bar">
-  <div class="ticker-label">Markets</div>
-  {ticker_html}
+  <div class="ticker-inner">
+    {ticker_html}
+  </div>
 </div>
 
 <!-- MAIN CONTENT -->
@@ -1019,24 +1157,14 @@ def build_html(sections, markets, spanish, all_articles):
       <div class="spanish-title-group">
         <span class="section-icon">🇪🇸</span>
         <h2 class="section-title">Hoy Aprenderás Español</h2>
-        <div class="spanish-badge">{spanish['theme']}</div>
+        <div class="spanish-badge">{spanish['type']}</div>
       </div>
-      <div class="spanish-counter">Theme {spanish['index']} of {spanish['total']}</div>
+      <div class="spanish-counter">Lesson {spanish['index']} of {spanish['total']}</div>
     </div>
     <div class="spanish-body">
-      <div class="spanish-roadmap">📍 {spanish['roadmap']}</div>
-      <table class="phrase-table">
-        <thead>
-          <tr>
-            <th>En español</th>
-            <th>In English</th>
-            <th>Pronunciation guide</th>
-          </tr>
-        </thead>
-        <tbody>
-          {phrase_rows}
-        </tbody>
-      </table>
+      <div class="vocab-grid">
+        {vocab_cards}
+      </div>
     </div>
   </div>
 
@@ -1253,8 +1381,8 @@ def main():
 
     # 4 — Spanish lesson
     spanish = get_spanish_lesson()
-    log_section(f"SPANISH › Theme {spanish['index']}: {spanish['theme']}")
-    log(spanish["roadmap"])
+    log_section(f"SPANISH › Lesson {spanish['index']}: {spanish['type']}")
+    log(f"{len(spanish['items'])} items loaded")
 
     # 5 — Build HTML
     log_section("BUILDING HTML DASHBOARD")

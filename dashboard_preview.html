@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saloni's Daily Digest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:      #f6f1e7;
+    --paper-dark: #ede8dc;
+    --white:      #ffffff;
+    --ink:        #111111;
+    --ink-mid:    #3a3a3a;
+    --ink-dim:    #666666;
+    --ink-faint:  #999999;
+    --red:        #c0001a;
+    --rule:       #c8c0b0;
+    --rule-dark:  #888070;
+    --gain:       #1a6b35;
+    --loss:       #c0001a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── TOP RED RULE ── */
+  .top-rule {
+    height: 4px;
+    background: var(--red);
+  }
+
+  /* ── MASTHEAD ── */
+  .site-header {
+    background: var(--paper);
+    padding: 1.2rem 4rem 0;
+    border-bottom: none;
+    position: relative;
+  }
+  .masthead-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .masthead-main {
+    text-align: center;
+    padding: 1.2rem 0 0.8rem;
+    border-bottom: 3px double var(--ink);
+    position: relative;
+  }
+  .header-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 0.4rem;
+  }
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+  }
+  .header-title span { font-style: italic; font-weight: 700; }
+  .header-tagline {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.95rem;
+    color: var(--ink-dim);
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+  .header-right, .header-left { display: none; } /* legacy, not used */
+
+  /* ── MARKET TICKER ── */
+  .ticker-bar {
+    background: var(--paper-dark);
+    border-bottom: 1px solid var(--rule-dark);
+    padding: 0.6rem 4rem;
+    display: flex;
+    gap: 0;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .ticker-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    padding-right: 1.5rem;
+    border-right: 1px solid var(--rule-dark);
+    margin-right: 1.5rem;
+  }
+  .market-card {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0 1.2rem;
+    border-right: 1px solid var(--rule);
+    background: none;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    border-radius: 0;
+    min-width: unset;
+  }
+  .market-card:last-child { border-right: none; }
+  .market-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .market-price {
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .market-change { font-size: 0.75rem; font-weight: 500; font-family: 'Jost', sans-serif; }
+  .market-change.gain    { color: var(--gain); }
+  .market-change.loss    { color: var(--loss); }
+  .market-change.neutral { color: var(--ink-faint); }
+
+  /* ── MAIN LAYOUT ── */
+  .main-wrap {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 2.5rem 4rem;
+  }
+
+  /* ── SECTION GRID ── */
+  .section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-bottom: 0;
+    border-top: 3px solid var(--ink);
+  }
+  @media (max-width: 900px) { .section-grid { grid-template-columns: 1fr; } }
+
+  /* ── SECTION CARDS ── */
+  .section-card {
+    background: var(--white);
+    border: none;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    border-radius: 0;
+    overflow: visible;
+    transition: none;
+    padding: 0;
+  }
+  .section-card:nth-child(2) { border-right: none; }
+  .section-card:hover { box-shadow: none; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem 0.75rem;
+    border-bottom: 2px solid var(--ink);
+    background: var(--ink);
+  }
+  .section-icon {
+    font-size: 1rem;
+    color: var(--paper);
+    filter: brightness(1.8);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--paper);
+  }
+  .section-body {
+    padding: 1.4rem 1.5rem 1.6rem;
+    font-family: 'EB Garamond', serif;
+    font-size: 1.0rem;
+    color: var(--ink-mid);
+    line-height: 1.8;
+    background: var(--white);
+  }
+  .section-body p { margin-bottom: 0.8rem; text-align: justify; }
+  .section-body p:last-child { margin-bottom: 0; }
+  .section-body strong { color: var(--ink); font-weight: 600; }
+  .section-body em { font-style: italic; color: var(--ink-mid); }
+  .section-body .spacer { height: 0.3rem; }
+  .digest-list {
+    padding-left: 1.1rem;
+    margin: 0.4rem 0 0.8rem;
+    list-style: none;
+  }
+  .digest-list li {
+    margin-bottom: 0.35rem;
+    padding-left: 1rem;
+    position: relative;
+  }
+  .digest-list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--ink-faint);
+  }
+  .inline-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 1rem 0 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── SECTION COLOUR ACCENTS (left border on header) ── */
+  .card-finance .section-header  { border-left: 4px solid #1a6b35; }
+  .card-world .section-header    { border-left: 4px solid #1a3a8a; }
+  .card-tech .section-header     { border-left: 4px solid #8a4a00; }
+  .card-india .section-header    { border-left: 4px solid var(--red); }
+
+  /* ── SPEED ROUND ── */
+  .speed-section {
+    background: var(--white);
+    border: none;
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+  .speed-header {
+    background: var(--ink);
+    border-bottom: 2px solid var(--ink);
+    border-left: 4px solid #6a0a6a;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem 0.75rem;
+  }
+  .speed-body {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .speed-item {
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+    font-family: 'EB Garamond', serif;
+    font-size: 0.98rem;
+    color: var(--ink-mid);
+    line-height: 1.6;
+  }
+  .speed-item:nth-child(even) { border-right: none; }
+  .speed-item strong { color: var(--ink); }
+
+  /* ── SPANISH SECTION ── */
+  .spanish-section {
+    background: var(--white);
+    border: none;
+    border-top: 3px solid var(--ink);
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+  .spanish-header {
+    background: var(--ink);
+    border-bottom: 2px solid var(--ink);
+    border-left: 4px solid #c9901a;
+    padding: 1rem 1.5rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  .spanish-title-group { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .spanish-badge {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: #c9901a;
+    border: none;
+    padding: 0.22rem 0.65rem;
+    border-radius: 2px;
+  }
+  .spanish-counter {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.05em;
+  }
+  .spanish-body { padding: 1.5rem; background: var(--white); }
+  .spanish-roadmap {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.92rem;
+    color: var(--ink-mid);
+    background: var(--paper);
+    border-left: 3px solid #c9901a;
+    padding: 0.65rem 1rem;
+    margin-bottom: 1.4rem;
+    font-style: italic;
+  }
+  .phrase-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .phrase-table th {
+    text-align: left;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    padding: 0 0 0.6rem;
+    border-bottom: 1px solid var(--rule-dark);
+  }
+  .phrase-table tr { border-bottom: 1px solid var(--rule); }
+  .phrase-table tr:last-child { border-bottom: none; }
+  .es-phrase {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--ink);
+    padding: 0.65rem 1.2rem 0.65rem 0;
+    font-size: 1.0rem;
+    vertical-align: top;
+    width: 35%;
+  }
+  .es-meaning {
+    font-family: 'EB Garamond', serif;
+    color: var(--ink-mid);
+    padding: 0.65rem 1.2rem 0.65rem 0;
+    vertical-align: top;
+    width: 35%;
+  }
+  .es-pron {
+    font-family: 'Jost', sans-serif;
+    color: var(--ink-dim);
+    font-size: 0.78rem;
+    padding: 0.65rem 0;
+    vertical-align: top;
+    width: 30%;
+    font-style: italic;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    border-top: 3px double var(--ink);
+    padding: 1.2rem 4rem;
+    text-align: center;
+    color: var(--ink-faint);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    line-height: 1.9;
+    background: var(--paper);
+  }
+  .footer-sources { max-width: 900px; margin: 0 auto 0.3rem; }
+  .footer-tag {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    color: var(--ink-dim);
+    font-size: 0.82rem;
+    letter-spacing: 0;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--paper); }
+  ::-webkit-scrollbar-thumb { background: var(--rule-dark); border-radius: 2px; }
+</style>
+</head>
+<body>
+<div class="top-rule"></div>
+
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="masthead-meta">
+    <div class="header-date">Monday, 20 April 2026</div>
+    <div class="header-time">Generated at 13:52</div>
+  </div>
+</header>
+
+<!-- MARKET TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-label">Markets</div>
+  <a class="market-card" href="https://finance.yahoo.com/quote/%5ENSEI/" target="_blank" rel="noopener">
+          <div class="market-label">Nifty 50</div>
+          <div class="market-price">24,353.55</div>
+          <div class="market-change gain">▲ +0.65%</div>
+        </a><a class="market-card" href="https://finance.yahoo.com/quote/%5EBSESN/" target="_blank" rel="noopener">
+          <div class="market-label">Sensex</div>
+          <div class="market-price">78,433.49</div>
+          <div class="market-change loss">▼ -0.08%</div>
+        </a><a class="market-card" href="https://finance.yahoo.com/quote/%5EGSPC/" target="_blank" rel="noopener">
+          <div class="market-label">S&P 500</div>
+          <div class="market-price">7,126.06</div>
+          <div class="market-change gain">▲ +1.20%</div>
+        </a><a class="market-card" href="https://www.coingecko.com/en/coins/bitcoin" target="_blank" rel="noopener">
+          <div class="market-label">Bitcoin</div>
+          <div class="market-price">$74,960</div>
+          <div class="market-change loss">▼ -0.34%</div>
+        </a>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="main-wrap">
+
+  <div class="section-grid">
+    <div class="section-card card-finance">
+          <div class="section-header">
+            <span class="section-icon">$</span>
+            <h2 class="section-title">Money Talk</h2>
+          </div>
+          <div class="section-body"><p><strong>Your Gemini API key isn't configured yet</strong> — but the RSS feeds are live and pulling fresh headlines!</p>
+<p>Add `GEMINI_API_KEY` to your `.env` file to unlock the full AI digest.</p>
+<div class="spacer"></div>
+<ul class="digest-list">
+  <li>Get a free key at <strong>https://aistudio.google.com</strong></li>
+  <li>Copy `.env.example` to `.env` and fill in your key</li>
+  <li>Re-run `python digest.py`</li>
+</ul>
+<div class="spacer"></div>
+<p>Markets are moving (check the ticker above), news is flowing, and your digest is almost ready.</p></div>
+        </div>
+    <div class="section-card card-world">
+          <div class="section-header">
+            <span class="section-icon">🌐</span>
+            <h2 class="section-title">World Lore</h2>
+          </div>
+          <div class="section-body"><p><strong>The world isn't waiting</strong> — your RSS feeds are pulling from NPR World, Foreign Policy, Deutsche Welle,</p>
+<p>The Hindu, and Hindustan Times right now. Once your Gemini key is in place, you'll get sharp, opinionated</p>
+<p>analysis of everything that matters geopolitically.</p></div>
+        </div>
+  </div>
+
+  <div class="section-grid">
+    <div class="section-card card-tech">
+          <div class="section-header">
+            <span class="section-icon">⚡</span>
+            <h2 class="section-title">Tech Tea</h2>
+          </div>
+          <div class="section-body"><p><strong>Hacker News, TechCrunch, The Verge, and Wired</strong> are all in the pipeline. Your AI tech commentator</p>
+<p>is one `.env` setting away from separating genuine breakthroughs from the usual hype cycle.</p></div>
+        </div>
+    <div class="section-card card-india">
+          <div class="section-header">
+            <span class="section-icon">🇮🇳</span>
+            <h2 class="section-title">India Low-Down</h2>
+          </div>
+          <div class="section-body"><p><strong>Times of India, The Hindu, The Wire, and Hindustan Times</strong> are feeding in. India-specific context</p>
+<p>and commentary will flow once Gemini is configured.</p></div>
+        </div>
+  </div>
+
+  <!-- SPEED ROUND -->
+  <div class="speed-section">
+    <div class="speed-header">
+      <span class="section-icon">⚡</span>
+      <h2 class="section-title">Speed Round</h2>
+    </div>
+    <div class="speed-body">
+      <div class="speed-item">🔑 Get your free Gemini API key at aistudio.google.com</div>
+<div class="speed-item">📝 Copy .env.example → .env and add your key</div>
+<div class="speed-item">🚀 Re-run python digest.py to get the full experience</div>
+<div class="speed-item">📰 All RSS feeds are live — headlines are fresh</div>
+<div class="speed-item">📈 Market data is pulled from Yahoo Finance + CoinGecko</div>
+<div class="speed-item">🇪🇸 Your Spanish lesson below is already rotating daily</div>
+<div class="speed-item">☕ In the meantime, the dashboard looks beautiful regardless</div>
+    </div>
+  </div>
+
+  <!-- SPANISH LESSON -->
+  <div class="spanish-section">
+    <div class="spanish-header">
+      <div class="spanish-title-group">
+        <span class="section-icon">🇪🇸</span>
+        <h2 class="section-title">Hoy Aprenderás Español</h2>
+        <div class="spanish-badge">Numbers & Money</div>
+      </div>
+      <div class="spanish-counter">Theme 5 of 15</div>
+    </div>
+    <div class="spanish-body">
+      <div class="spanish-roadmap">📍 B1 Intermediate — Count, calculate, and talk about money in Spanish. Essential everyday vocabulary.</div>
+      <table class="phrase-table">
+        <thead>
+          <tr>
+            <th>En español</th>
+            <th>In English</th>
+            <th>Pronunciation guide</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+              <td class="es-phrase">Las acciones han subido.</td>
+              <td class="es-meaning">Stocks have gone up.</td>
+              <td class="es-pron">Lahs ak-SYOH-nehs ahn soo-BEE-doh</td>
+            </tr><tr>
+              <td class="es-phrase">¿Cuál es el tipo de cambio?</td>
+              <td class="es-meaning">What's the exchange rate?</td>
+              <td class="es-pron">Kwahl es el TEE-poh deh KAHM-byoh</td>
+            </tr><tr>
+              <td class="es-phrase">Quiero invertir a largo plazo.</td>
+              <td class="es-meaning">I want to invest long-term.</td>
+              <td class="es-pron">KYEH-roh een-vehr-TEER ah LAR-goh PLAH-soh</td>
+            </tr><tr>
+              <td class="es-phrase">El mercado está volátil.</td>
+              <td class="es-meaning">The market is volatile.</td>
+              <td class="es-pron">El mehr-KAH-doh es-TAH boh-LAH-teel</td>
+            </tr><tr>
+              <td class="es-phrase">Ahorra para el futuro.</td>
+              <td class="es-meaning">Save for the future.</td>
+              <td class="es-pron">Ah-OH-rrah PAH-rah el foo-TOO-roh</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-sources">Sources · BBC Business · CNBC · Deutsche Welle · Foreign Policy · Guardian Business · Hacker News · MarketWatch · NPR World · TechCrunch · The Hindu · The Verge · Times of India · Wired</div>
+  <div class="footer-tag">"Saloni's Daily Digest" — stay curious, stay sharp.</div>
+</footer>
+
+
+</body>
+</html>
