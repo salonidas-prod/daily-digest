@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saloni's Daily Digest — Monday, 04 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:        #f6f1e7;
+    --paper-dark:   #ede8da;
+    --paper-white:  #ffffff;
+    --ink:          #111111;
+    --ink-dim:      #333333;
+    --ink-light:    #666666;
+    --ink-faint:    #999999;
+    --red:          #c0001a;
+    --border:       rgba(0,0,0,0.18);
+    --border-light: rgba(0,0,0,0.08);
+    --gain:         #1a6b35;
+    --loss:         #b50016;
+    --neutral:      #777;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  /* ── TOP RULE ─────────────────────────────── */
+  .top-rule {
+    height: 4px;
+    background: var(--red);
+  }
+
+  /* ── MASTHEAD ─────────────────────────────── */
+  .masthead {
+    background: var(--paper);
+    border-bottom: 3px double var(--ink);
+    padding: 0.9rem 4rem 1.5rem;
+    text-align: center;
+  }
+  .masthead-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
+  }
+  .masthead-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.3rem;
+  }
+  .masthead-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 7vw, 4.8rem);
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+  }
+  .masthead-title em {
+    font-style: italic;
+    font-weight: 700;
+  }
+  .masthead-tagline {
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--ink-light);
+    margin-top: 0.4rem;
+  }
+  @media (max-width: 900px) {
+    .masthead { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .masthead-meta { font-size: 0.55rem; }
+  }
+
+  /* ── MARKET TICKER ───────────────────────── */
+  .ticker-bar {
+    background: var(--paper);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 4rem;
+  }
+  .ticker-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+  }
+  .ticker-markets-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+  .ticker-pipe {
+    color: var(--border);
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1;
+    user-select: none;
+  }
+  .market-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0.15rem 0.35rem;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .market-card:hover { background: var(--paper-dark); }
+  .market-label  { font-family: 'Jost', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); }
+  .market-price  { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--ink); font-weight: 700; }
+  .market-change { font-family: 'Jost', sans-serif; font-size: 0.68rem; font-weight: 500; }
+  .market-change.gain    { color: var(--gain); }
+  .market-change.loss    { color: var(--loss); }
+  .market-change.neutral { color: var(--neutral); }
+
+  /* ── MAIN LAYOUT ─────────────────────────── */
+  .main-wrap {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 2.5rem 4rem;
+  }
+  .section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.8rem;
+    margin-bottom: 1.8rem;
+  }
+  @media (max-width: 900px) {
+    .section-grid { grid-template-columns: 1fr; }
+    .masthead, .ticker-bar, .main-wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+
+  /* ── SECTION CARDS ───────────────────────── */
+  .section-card {
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.85rem 1.4rem;
+    background: var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+  .section-icon  { font-size: 1rem; }
+  .section-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--paper);
+  }
+  .section-body {
+    padding: 1.5rem;
+    font-size: 0.96rem;
+    color: var(--ink-dim);
+    line-height: 1.82;
+    background: var(--paper);
+  }
+  .section-body p { margin-bottom: 0.85rem; }
+  .section-body p:last-child { margin-bottom: 0; }
+  .section-body strong { color: var(--ink); font-weight: 700; }
+  .section-body em { color: var(--ink-dim); font-style: italic; }
+  .section-body .spacer { height: 0.4rem; }
+  .digest-list { padding-left: 1.2rem; margin: 0.5rem 0 0.85rem; }
+  .digest-list li { margin-bottom: 0.35rem; }
+  .inline-heading {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 1rem 0 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.2rem;
+  }
+
+  /* ── SPEED ROUND ─────────────────────────── */
+  .speed-section {
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 1.8rem;
+  }
+  .speed-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.85rem 1.4rem;
+    background: var(--red);
+  }
+  .speed-header .section-title { color: white; }
+  .speed-body {
+    padding: 1rem 1.2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: var(--paper);
+  }
+  @media (max-width: 700px) { .speed-body { grid-template-columns: 1fr; } }
+  .speed-item {
+    padding: 0.52rem 0.7rem;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 0.9rem;
+    color: var(--ink-dim);
+    line-height: 1.55;
+  }
+  .speed-item:last-child { border-bottom: none; }
+  .speed-item strong { color: var(--ink); }
+
+  /* ── SPANISH SECTION ─────────────────────── */
+  .spanish-section {
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 1.8rem;
+  }
+  .spanish-header {
+    background: var(--ink);
+    padding: 0.85rem 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+  .spanish-title-group { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; }
+  .spanish-badge {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--paper);
+    padding: 0.15rem 0.5rem;
+  }
+  .spanish-counter {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.62rem;
+    color: rgba(246,241,231,0.55);
+    letter-spacing: 0.08em;
+  }
+  .spanish-body { padding: 1.4rem; background: var(--paper); }
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.8rem;
+  }
+  @media (max-width: 1100px) { .vocab-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 700px)  { .vocab-grid { grid-template-columns: repeat(2, 1fr); } }
+  .vocab-card {
+    background: var(--paper-white);
+    border: 1px solid var(--border);
+    padding: 1rem 1rem 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    transition: border-color 0.18s, box-shadow 0.18s;
+  }
+  .vocab-card:hover {
+    border-color: var(--ink);
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+  .vocab-es {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .vocab-en {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .vocab-example {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--ink-light);
+    font-style: italic;
+    line-height: 1.5;
+    margin-top: 0.2rem;
+    flex: 1;
+  }
+  .vocab-pron {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.62rem;
+    color: var(--ink-faint);
+    margin-top: 0.3rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── FOOTER ──────────────────────────────── */
+  .site-footer {
+    border-top: 3px double var(--ink);
+    padding: 1.4rem 4rem;
+    text-align: center;
+    color: var(--ink-light);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.65rem;
+    line-height: 1.9;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .footer-sources { max-width: 900px; margin: 0 auto 0.4rem; }
+  .footer-tag {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    color: var(--ink-dim);
+    font-size: 0.9rem;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  /* ── SCROLLBAR ───────────────────────────── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--paper); }
+  ::-webkit-scrollbar-thumb { background: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="top-rule"></div>
+<header class="masthead">
+  <div class="masthead-meta">
+    <span>Monday, 04 May 2026</span>
+    <span>Generated at 01:33 IST</span>
+  </div>
+  <p class="masthead-eyebrow">Your morning brief</p>
+  <h1 class="masthead-title">Saloni's <em>Daily</em> Digest</h1>
+  <p class="masthead-tagline">Served sharp. No fluff. Just the world as it is.</p>
+</header>
+
+<!-- MARKET TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-inner">
+    <span class="ticker-markets-label">Markets</span><span class="ticker-pipe">|</span><a class="market-card" href="https://finance.yahoo.com/quote/%5ENSEI/" target="_blank" rel="noopener"><span class="market-label">Nifty 50</span><span class="market-price">23,997.55</span><span class="market-change loss">▼ -0.74%</span></a><span class="ticker-pipe">|</span><a class="market-card" href="https://finance.yahoo.com/quote/%5EBSESN/" target="_blank" rel="noopener"><span class="market-label">Sensex</span><span class="market-price">76,913.50</span><span class="market-change loss">▼ -0.75%</span></a><span class="ticker-pipe">|</span><a class="market-card" href="https://finance.yahoo.com/quote/%5EGSPC/" target="_blank" rel="noopener"><span class="market-label">S&P 500</span><span class="market-price">7,230.12</span><span class="market-change gain">▲ +0.29%</span></a><span class="ticker-pipe">|</span><a class="market-card" href="https://www.coingecko.com/en/coins/bitcoin" target="_blank" rel="noopener"><span class="market-label">Bitcoin</span><span class="market-price">$78,175</span><span class="market-change gain">▲ +0.02%</span></a>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="main-wrap">
+
+  <div class="section-grid">
+    <div class="section-card card-finance">
+          <div class="section-header">
+            <span class="section-icon">$</span>
+            <h2 class="section-title">Money Talk</h2>
+          </div>
+          <div class="section-body"><p><strong>Your Gemini API key isn't configured yet</strong> — but the RSS feeds are live and pulling fresh headlines!</p>
+<p>Add `GEMINI_API_KEY` to your `.env` file to unlock the full AI digest.</p>
+<div class="spacer"></div>
+<ul class="digest-list">
+  <li>Get a free key at <strong>https://aistudio.google.com</strong></li>
+  <li>Copy `.env.example` to `.env` and fill in your key</li>
+  <li>Re-run `python digest.py`</li>
+</ul>
+<div class="spacer"></div>
+<p>Markets are moving (check the ticker above), news is flowing, and your digest is almost ready.</p></div>
+        </div>
+    <div class="section-card card-world">
+          <div class="section-header">
+            <span class="section-icon">🌐</span>
+            <h2 class="section-title">World Lore</h2>
+          </div>
+          <div class="section-body"><p><strong>The world isn't waiting</strong> — your RSS feeds are pulling from NPR World, Foreign Policy, Deutsche Welle,</p>
+<p>The Hindu, and Hindustan Times right now. Once your Gemini key is in place, you'll get sharp, opinionated</p>
+<p>analysis of everything that matters geopolitically.</p></div>
+        </div>
+  </div>
+
+  <div class="section-grid">
+    <div class="section-card card-tech">
+          <div class="section-header">
+            <span class="section-icon">⚡</span>
+            <h2 class="section-title">Tech Tea</h2>
+          </div>
+          <div class="section-body"><p><strong>Hacker News, TechCrunch, The Verge, and Wired</strong> are all in the pipeline. Your AI tech commentator</p>
+<p>is one `.env` setting away from separating genuine breakthroughs from the usual hype cycle.</p></div>
+        </div>
+    <div class="section-card card-india">
+          <div class="section-header">
+            <span class="section-icon">🇮🇳</span>
+            <h2 class="section-title">India Low-Down</h2>
+          </div>
+          <div class="section-body"><p><strong>Times of India, The Hindu, The Wire, and Hindustan Times</strong> are feeding in. India-specific context</p>
+<p>and commentary will flow once Gemini is configured.</p></div>
+        </div>
+  </div>
+
+  <!-- SPEED ROUND -->
+  <div class="speed-section">
+    <div class="speed-header">
+      <span class="section-icon">⚡</span>
+      <h2 class="section-title">Speed Round</h2>
+    </div>
+    <div class="speed-body">
+      <div class="speed-item">🔑 Get your free Gemini API key at aistudio.google.com</div>
+<div class="speed-item">📝 Copy .env.example → .env and add your key</div>
+<div class="speed-item">🚀 Re-run python digest.py to get the full experience</div>
+<div class="speed-item">📰 All RSS feeds are live — headlines are fresh</div>
+<div class="speed-item">📈 Market data is pulled from Yahoo Finance + CoinGecko</div>
+<div class="speed-item">🇪🇸 Your Spanish lesson below is already rotating daily</div>
+<div class="speed-item">☕ In the meantime, the dashboard looks beautiful regardless</div>
+    </div>
+  </div>
+
+  <!-- SPANISH LESSON -->
+  <div class="spanish-section">
+    <div class="spanish-header">
+      <div class="spanish-title-group">
+        <span class="section-icon">🇪🇸</span>
+        <h2 class="section-title">Hoy Aprenderás Español</h2>
+        <div class="spanish-badge">A1 · How Are You?</div>
+      </div>
+      <div class="spanish-counter">Lesson 4 of 30</div>
+    </div>
+    <div class="spanish-body">
+      <div class="vocab-grid">
+        <div class="vocab-card">
+              <div class="vocab-es">¿Cómo estás?</div>
+              <div class="vocab-en">How are you?</div>
+              <div class="vocab-example">¡Hola! ¿Cómo estás?</div>
+              <div class="vocab-pron">KOH-moh es-TAHS</div>
+            </div><div class="vocab-card">
+              <div class="vocab-es">Estoy bien.</div>
+              <div class="vocab-en">I'm fine.</div>
+              <div class="vocab-example">Estoy bien, gracias.</div>
+              <div class="vocab-pron">es-TOY byehn</div>
+            </div><div class="vocab-card">
+              <div class="vocab-es">Estoy mal.</div>
+              <div class="vocab-en">I'm not well.</div>
+              <div class="vocab-example">Hoy estoy un poco mal.</div>
+              <div class="vocab-pron">es-TOY mahl</div>
+            </div><div class="vocab-card">
+              <div class="vocab-es">Más o menos.</div>
+              <div class="vocab-en">So-so.</div>
+              <div class="vocab-example">¿Cómo estás? Más o menos.</div>
+              <div class="vocab-pron">mahs oh MEH-nohs</div>
+            </div><div class="vocab-card">
+              <div class="vocab-es">¿Y tú?</div>
+              <div class="vocab-en">And you?</div>
+              <div class="vocab-example">Estoy bien. ¿Y tú?</div>
+              <div class="vocab-pron">ee TOO</div>
+            </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-sources">Sources · BBC Business · CNBC · Deutsche Welle · Foreign Policy · Guardian Business · Hacker News · MarketWatch · NPR World · TechCrunch · The Hindu · The Verge · Times of India · Wired</div>
+  <div class="footer-tag">"Saloni's Daily Digest" — stay curious, stay sharp.</div>
+</footer>
+
+</body>
+</html>
