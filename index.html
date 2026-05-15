@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saloni's Daily Digest — Friday, 15 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:        #f6f1e7;
+    --paper-dark:   #ede8da;
+    --paper-white:  #ffffff;
+    --ink:          #111111;
+    --ink-dim:      #333333;
+    --ink-light:    #666666;
+    --ink-faint:    #999999;
+    --red:          #c0001a;
+    --border:       rgba(0,0,0,0.18);
+    --border-light: rgba(0,0,0,0.08);
+    --gain:         #1a6b35;
+    --loss:         #b50016;
+    --neutral:      #777;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  /* ── TOP RULE ─────────────────────────────── */
+  .top-rule {
+    height: 4px;
+    background: var(--red);
+  }
+
+  /* ── MASTHEAD ─────────────────────────────── */
+  .masthead {
+    background: var(--paper);
+    border-bottom: 3px double var(--ink);
+    padding: 0.9rem 4rem 1.5rem;
+    text-align: center;
+  }
+  .masthead-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
+  }
+  .masthead-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.3rem;
+  }
+  .masthead-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 7vw, 4.8rem);
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+  }
+  .masthead-title em {
+    font-style: italic;
+    font-weight: 700;
+  }
+  .masthead-tagline {
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--ink-light);
+    margin-top: 0.4rem;
+  }
+  @media (max-width: 900px) {
+    .masthead { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .masthead-meta { font-size: 0.55rem; }
+  }
+
+  /* ── MARKET TICKER ───────────────────────── */
+  .ticker-bar {
+    background: var(--paper);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 4rem;
+  }
+  .ticker-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+  }
+  .ticker-markets-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+  .ticker-pipe {
+    color: var(--border);
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1;
+    user-select: none;
+  }
+  .market-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0.15rem 0.35rem;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .market-card:hover { background: var(--paper-dark); }
+  .market-label  { font-family: 'Jost', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); }
+  .market-price  { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--ink); font-weight: 700; }
+  .market-change { font-family: 'Jost', sans-serif; font-size: 0.68rem; font-weight: 500; }
+  .market-change.gain    { color: var(--gain); }
+  .market-change.loss    { color: var(--loss); }
+  .market-change.neutral { color: var(--neutral); }
+
+  /* ── MAIN LAYOUT ─────────────────────────── */
+  .main-wrap {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 2.5rem 4rem;
+  }
+  .section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.8rem;
+    margin-bottom: 1.8rem;
+  }
+  @media (max-width: 900px) {
+    .section-grid { grid-template-columns: 1fr; }
+    .masthead, .ticker-bar, .main-wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+
+  /* ── SECTION CARDS ───────────────────────── */
+  .section-card {
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.85rem 1.4rem;
+    background: var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+  .section-icon  { font-size: 1rem; }
+  .section-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--paper);
+  }
+  .section-body {
+    padding: 1.5rem;
+    font-size: 0.96rem;
+    color: var(--ink-dim);
+    line-height: 1.82;
+    background: var(--paper);
+  }
+  .section-body p { margin-bottom: 0.85rem; }
+  .section-body p:last-child { margin-bottom: 0; }
+  .section-body strong { color: var(--ink); font-weight: 700; }
+  .section-body em { color: var(--ink-dim); font-style: italic; }
+  .section-body .spacer { height: 0.4rem; }
+  .digest-list { padding-left: 1.2rem; margin: 0.5rem 0 0.85rem; }
+  .digest-list li { margin-bottom: 0.35rem; }
+  .inline-heading {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 1rem 0 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.2rem;
+  }
+
+  /* ── SPEED ROUND ─────────────────────────── */
+  .speed-section {
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 1.8rem;
+  }
+  .speed-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.85rem 1.4rem;
+    background: var(--red);
+  }
+  .speed-header .section-title { color: white; }
+  .speed-body {
+    padding: 1rem 1.2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: var(--paper);
+  }
+  @media (max-width: 700px) { .speed-body { grid-template-columns: 1fr; } }
+  .speed-item {
+    padding: 0.52rem 0.7rem;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 0.9rem;
+    color: var(--ink-dim);
+    line-height: 1.55;
+  }
+  .speed-item:last-child { border-bottom: none; }
+  .speed-item strong { color: var(--ink); }
+
+  /* ── SPANISH SECTION ─────────────────────── */
+  .spanish-section {
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 1.8rem;
+  }
+  .spanish-header {
+    background: var(--ink);
+    padding: 0.85rem 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+  .spanish-title-group { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; }
+  .spanish-badge {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--paper);
+    padding: 0.15rem 0.5rem;
+  }
+  .spanish-counter {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.62rem;
+    color: rgba(246,241,231,0.55);
+    letter-spacing: 0.08em;
+  }
+  .spanish-body { padding: 1.4rem; background: var(--paper); }
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.8rem;
+  }
+  @media (max-width: 1100px) { .vocab-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 700px)  { .vocab-grid { grid-template-columns: repeat(2, 1fr); } }
+  .vocab-card {
+    background: var(--paper-white);
+    border: 1px solid var(--border);
+    padding: 1rem 1rem 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    transition: border-color 0.18s, box-shadow 0.18s;
+  }
+  .vocab-card:hover {
+    border-color: var(--ink);
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+  .vocab-es {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .vocab-en {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .vocab-example {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--ink-light);
+    font-style: italic;
+    line-height: 1.5;
+    margin-top: 0.2rem;
+    flex: 1;
+  }
+  .vocab-pron {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.62rem;
+    color: var(--ink-faint);
+    margin-top: 0.3rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── FOOTER ──────────────────────────────── */
+  .site-footer {
+    border-top: 3px double var(--ink);
+    padding: 1.4rem 4rem;
+    text-align: center;
+    color: var(--ink-light);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.65rem;
+    line-height: 1.9;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .footer-sources { max-width: 900px; margin: 0 auto 0.4rem; }
+  .footer-tag {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    color: var(--ink-dim);
+    font-size: 0.9rem;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  /* ── SCROLLBAR ───────────────────────────── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--paper); }
+  ::-webkit-scrollbar-thumb { background: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="top-rule"></div>
+<header class="masthead">
+  <div class="masthead-meta">
+    <span>Friday, 15 May 2026</span>
+    <span>Generated at 09:43 IST</span>
+  </div>
+  <p class="masthead-eyebrow">Your morning brief</p>
+  <h1 class="masthead-title">Saloni's <em>Daily</em> Digest</h1>
+  <p class="masthead-tagline">Served sharp. No fluff. Just the world as it is.</p>
+</header>
+
+<!-- MARKET TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-inner">
+    <span class="ticker-markets-label">Markets</span><span class="ticker-pipe">|</span><a class="market-card" href="https://finance.yahoo.com/quote/%5ENSEI/" target="_blank" rel="noopener"><span class="market-label">Nifty 50</span><span class="market-price">23,792.40</span><span class="market-change gain">▲ +0.43%</span></a><span class="ticker-pipe">|</span><a class="market-card" href="https://finance.yahoo.com/quote/%5EBSESN/" target="_blank" rel="noopener"><span class="market-label">Sensex</span><span class="market-price">75,656.42</span><span class="market-change gain">▲ +0.34%</span></a><span class="ticker-pipe">|</span><a class="market-card" href="https://finance.yahoo.com/quote/%5EGSPC/" target="_blank" rel="noopener"><span class="market-label">S&P 500</span><span class="market-price">7,501.24</span><span class="market-change gain">▲ +0.77%</span></a><span class="ticker-pipe">|</span><a class="market-card" href="https://www.coingecko.com/en/coins/bitcoin" target="_blank" rel="noopener"><span class="market-label">Bitcoin</span><span class="market-price">$81,047</span><span class="market-change gain">▲ +2.32%</span></a>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="main-wrap">
+
+  <div class="section-grid">
+    <div class="section-card card-finance">
+          <div class="section-header">
+            <span class="section-icon">$</span>
+            <h2 class="section-title">Money Talk</h2>
+          </div>
+          <div class="section-body"><p>So, the market's still high on AI fumes. <strong>Cerebras</strong> popped a ridiculous 68% on its Nasdaq debut, pushing its market cap to $95 billion. Call me cynical, but this AI chip gold rush is starting to feel less like a genuine signal and more like a collective delusion. Case in point: <strong>Nvidia's</strong> earnings, while massive, probably won't be enough to pull the S&P 500 out of its "sell signal" territory. The smart money (or at least, the cautious money) is whispering that parts of this tech run are getting <strong>overbought</strong>, and we’re heading into a crucial earnings season for some real clarity.</p>
+<div class="spacer"></div>
+<p>Meanwhile, the US-China "deal-making" continues its pantomime. Trump claimed China agreed to buy US oil, sending prices up, but let's be real – the <em>actual</em> big deals, like <strong>Boeing's</strong> supposed 500-plane order, got slashed by more than half. Remember when Trump's best China deal was the one he <em>didn't</em> make? Turns out, empty promises and tariffs are just shaking up supply chains and hurting companies like <strong>Jaguar Land Rover</strong>, whose profits plummeted 99% thanks to US tariffs and other woes. Geopolitics isn't just news, it's hitting bottom lines hard.</p>
+<div class="spacer"></div>
+<p>Speaking of geopolitics, the lingering specter of the Iran war is making itself felt. <strong>Jet fuel shortages</strong> are now deemed "inevitable," meaning those summer airfares are only going one way: up. This hits your wallet and, frankly, makes global travel more of a headache. Interestingly, the <strong>UK economy</strong> saw surprise growth in March despite the Iran war, which is a testament to… something. Maybe it’s just the calm before a bigger storm, or perhaps a surprising resilience. Keep an eye on that. Lastly, Modi’s out here telling Indians to <strong>buy less gold and take fewer foreign holidays</strong> to save the rupee and bolster forex. It’s a direct plea, showing the strain on the Indian economy from global shocks, and a clear signal of the government’s priorities for our household spending.</p></div>
+        </div>
+    <div class="section-card card-world">
+          <div class="section-header">
+            <span class="section-icon">🌐</span>
+            <h2 class="section-title">World Lore</h2>
+          </div>
+          <div class="section-body"><p>The big show continues in Beijing, with Trump and Xi in a high-stakes summit that's more about optics than groundbreaking breakthroughs. Xi, ever the master of veiled threats, warned Trump that <strong>mishandling Taiwan</strong> would put the US-China relationship in "great jeopardy." It’s the constant undercurrent of their talks, a reminder that the stakes are existential, not just economic. Trump, for his part, tried to portray unity on the <strong>Hormuz Strait</strong> reopening, which is a key energy security concern for both nations, especially with the Iran war backdrop. But let's be honest, Doshi’s right: China now faces the US as a peer, and the days of easy concessions are over.</p>
+<div class="spacer"></div>
+<p>Across the pond, British politics is in a full-blown meltdown. PM <strong>Keir Starmer’s job is in jeopardy</strong> after his party got absolutely clobbered in local elections, prompting Health Secretary Wes Streeting to resign and position himself for a leadership challenge. The Labour party is eating itself, which is never a good look, especially for a G7 nation teetering on the edge of instability.</p>
+<div class="spacer"></div>
+<p>The Middle East remains a powder keg. <strong>Israel's Lebanon strategy</strong> is looking increasingly "self-defeating," according to Foreign Policy, suggesting that their current approach isn't actually weakening Hezbollah but potentially strengthening it or inviting further escalation. It's a messy, intractable problem with huge regional implications that could spiral at any moment.</p>
+<div class="spacer"></div>
+<p>And then there’s <strong>Ukraine</strong>. A drawn-out <strong>corruption scandal</strong> is widening, with authorities now targeting the former head of the presidential office. The question isn't <em>if</em> it reaches Zelenskyy, but <em>when</em> and how much damage it does to a wartime government trying to maintain international credibility and support. It's a brutal reminder that internal rot can be as dangerous as external enemies. Finally, a depressing but telling sign of economic decay: <strong>Cuba's power grid collapsed</strong>, plunging eastern provinces into darkness. It's a stark illustration of years of underinvestment, an aging infrastructure, and the chokehold of the US energy blockade.</p></div>
+        </div>
+  </div>
+
+  <div class="section-grid">
+    <div class="section-card card-tech">
+          <div class="section-header">
+            <span class="section-icon">⚡</span>
+            <h2 class="section-title">Tech Tea</h2>
+          </div>
+          <div class="section-body"><p>Alright, let's spill. The <strong>Elon Musk vs. Sam Altman</strong> courtroom drama is truly the gift that keeps on giving – or rather, the train wreck you can't look away from. It seems like everyone involved, from Musk's bumbling lawyer to the general aura of the proceedings, is coming out looking bad. It's less about the future of AI and more about ego and infighting, starkly highlighting the chaotic leadership at the top of these "visionary" companies. Add to that the reports of <strong>SpaceXAI bleeding staff</strong> since its merger, and you start to wonder if Musk's chaotic management style is sustainable, even for the most brilliant minds. It's a stark reminder that even with billions, culture (or lack thereof) matters.</p>
+<div class="spacer"></div>
+<p>On the product front, <strong>OpenAI says Codex is coming to your phone</strong>, which is cool, I guess? More AI, more everywhere. But then you read articles about how <strong>access to frontier AI will soon be limited by economic and security constraints</strong>, and suddenly the ubiquity of consumer AI feels less like democratizing intelligence and more like a carefully controlled release. The real power players are already drawing lines around who gets to build the truly cutting-edge stuff, and it’s probably not us.</p>
+<div class="spacer"></div>
+<p>And what's this "vibe coding" that <strong>Lovable just backed a hardware company</strong> to bring to fruition? Honestly, it sounds like peak startup-speak for something that might be a genuine innovation or total vaporware. I'm leaning towards the latter until I see some actual product, not just hype. But Meta's actual product pushes are interesting – their <strong>Ray-Ban Display glasses</strong> are getting virtual writing capabilities via hand gestures. It's a step towards more intuitive AR, but also a step towards us all looking like we're furiously gesticulating at thin air. Finally, the <strong>engineer protest against laptop surveillance at Meta</strong> is fascinating. Companies are tracking keystrokes and mouse activity? Talk about a big tech dystopia. It's a crucial battle for employee privacy, highlighting the dark side of "productivity" tools.</p></div>
+        </div>
+    <div class="section-card card-india">
+          <div class="section-header">
+            <span class="section-icon">🇮🇳</span>
+            <h2 class="section-title">India Low-Down</h2>
+          </div>
+          <div class="section-body"><p>First up, the elephant in the room: the government just <strong>hiked petrol and diesel prices by ₹3 per litre</strong>. As if crude oil costs weren’t already biting, this is going to sting every Indian household and push inflation further. It’s a tough pill to swallow, hitting everything from your commute to your groceries. No easy answers here, just harder living for many.</p>
+<div class="spacer"></div>
+<p>Modi’s been on a diplomatic sprint, embarking on a <strong>six-day visit to the UAE and four European nations</strong>. This isn't just about handshakes; it's about firming up crucial agreements on things like LPG and strategic petroleum reserves. It ties directly into his push for Indians to save dollars and shore up our forex reserves, showing India’s active engagement in global energy security while grappling with domestic economic pressures. It's a delicate dance of multi-alignment diplomacy, especially with the Iran war testing those balanced ties.</p>
+<div class="spacer"></div>
+<p>Domestically, the political narrative games continue. There's an ongoing, heated debate over whether <strong>Hyderabad was "integrated" or "liberated,"</strong> highlighting the persistent ideological battles over historical narratives. And down in West Bengal, the BJP decisively ousted longtime leaders, but <strong>allegations of foul play</strong> due to last-minute voter roll changes mean the political heat isn't dying down anytime soon. It’s a clear signal that every election, even local ones, is a high-stakes, bare-knuckle fight.</p>
+<div class="spacer"></div>
+<p>On the ground, it's a reminder of deep-seated issues. <strong>Unorganized laborers in Rajasthan are seeking a minimum wage revision</strong>, arguing that current rates don't even cover basic necessities. It’s a stark picture of the economic disparity and the struggles faced by a vast segment of our workforce, showing how macro growth numbers don't always translate to micro well-being. And in a tragic reminder of industrial safety lapses, the <strong>death toll in a firecracker factory explosion in MP’s Dewas rose to five</strong>, with the owner arrested under the NSA. It's a recurring, devastating problem that screams for better regulation and enforcement.</p></div>
+        </div>
+  </div>
+
+  <!-- SPEED ROUND -->
+  <div class="speed-section">
+    <div class="speed-header">
+      <span class="section-icon">⚡</span>
+      <h2 class="section-title">Speed Round</h2>
+    </div>
+    <div class="speed-body">
+      <div class="speed-item">💊 SCOTUS keeps abortion pill mail-order legal, a temporary win for reproductive rights advocates and pharma accessibility.</div>
+<div class="speed-item">🎤 Taylor Swift's Eras Tour is projected to outearn the World Cup this summer, proving pop culture's undeniable economic power.</div>
+<div class="speed-item">💸 Nigel Farage now claims his £5M crypto 'gift' was a Brexit "reward," raising more eyebrows than answers.</div>
+<div class="speed-item">🇪🇺 Eurovision heats up with controversy: five countries boycott over Israel's participation, but the show (and glitter) goes on.</div>
+<div class="speed-item">🚗 Honda unveils hybrid Accord and RDX prototypes, signaling a major push into its electrified future for core models.</div>
+<div class="speed-item">🎮 *Metroid Prime 4: Beyond* gets its first big discount, a sweet deal for Switch owners keen on premium sci-fi action.</div>
+<div class="speed-item">👵 US Social Security caught one dead person still claiming benefits, but the quest for 19,999,999 more continues. Good luck with that.</div>
+<div class="speed-item">☔ JLR's profit crashed 99% after US tariffs, competition, and a cyber-attack hit hard. When it rains, it pours.</div>
+<div class="speed-item">Stay sharp,</div>
+<div class="speed-item">Your favorite news nerd.</div>
+    </div>
+  </div>
+
+  <!-- SPANISH LESSON -->
+  <div class="spanish-section">
+    <div class="spanish-header">
+      <div class="spanish-title-group">
+        <span class="section-icon">🇪🇸</span>
+        <h2 class="section-title">Hoy Aprenderás Español</h2>
+        <div class="spanish-badge">A1 · 'To Be' — ser</div>
+      </div>
+      <div class="spanish-counter">Lesson 15 of 30</div>
+    </div>
+    <div class="spanish-body">
+      <div class="vocab-grid">
+        <div class="vocab-card">
+              <div class="vocab-es">Soy</div>
+              <div class="vocab-en">I am</div>
+              <div class="vocab-example">Soy estudiante.</div>
+              <div class="vocab-pron">soy</div>
+            </div><div class="vocab-card">
+              <div class="vocab-es">Eres</div>
+              <div class="vocab-en">You are</div>
+              <div class="vocab-example">Eres muy simpática.</div>
+              <div class="vocab-pron">EH-rehs</div>
+            </div><div class="vocab-card">
+              <div class="vocab-es">Es</div>
+              <div class="vocab-en">He/She is</div>
+              <div class="vocab-example">Ella es mi profesora.</div>
+              <div class="vocab-pron">es</div>
+            </div><div class="vocab-card">
+              <div class="vocab-es">Somos</div>
+              <div class="vocab-en">We are</div>
+              <div class="vocab-example">Somos de India.</div>
+              <div class="vocab-pron">SOH-mohs</div>
+            </div><div class="vocab-card">
+              <div class="vocab-es">Son</div>
+              <div class="vocab-en">They are</div>
+              <div class="vocab-example">Son las tres de la tarde.</div>
+              <div class="vocab-pron">sohn</div>
+            </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-sources">Sources · BBC Business · CNBC · Deutsche Welle · Foreign Policy · Guardian Business · Hacker News · MarketWatch · NPR World · TechCrunch · The Hindu · The Verge · Times of India · Wired</div>
+  <div class="footer-tag">"Saloni's Daily Digest" — stay curious, stay sharp.</div>
+</footer>
+
+</body>
+</html>
